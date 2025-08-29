@@ -3,7 +3,7 @@ title: "E155 Blog posts"
 theme: solar
 listing:
   contents: posts
-  sort: "date desc"
+  sort: "date asc"
   type: default
   categories: false
 
