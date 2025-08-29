@@ -1,0 +1,9 @@
+---
+title: "Lab 1"
+description: "A familiarization of Micro-controller units (MCU's) and field-programmable gate arrays (FPGA's)"
+author: "Drake Gonzales"
+date: "8/27/25"
+categories:
+  - labreport
+draft: false
+---

@@ -1,0 +1,9 @@
+---
+title: "Lab 4"
+description: "Digital Audio"
+author: "Drake Gonzales"
+date: "11/27/25"
+categories:
+  - labreport
+draft: false
+---

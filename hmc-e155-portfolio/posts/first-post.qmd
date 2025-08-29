@@ -1,0 +1,13 @@
+---
+title: "Lab 0"
+description: "Initial reflection"
+author: "Drake Gonzales"
+date: "8/27/25"
+categories:
+  - reflection
+draft: false
+---
+
+Throughout my tenure at Harvey Mudd College I have taken many classes within the engineering discipline. Most of these classes, although cool, had little to do with what I was actually passionate about, which is lithography. Lithography is a process within the chip-making industry, that etches computer chips onto silicon wafers. This process, although existing for many decades, still feels like magic to me, which is the reason I am so passionate about it. 
+
+Within E155 I would like to further my knowledge of computer engineering and really start grasping how micro-controllers work. Micro-controllers make up the digital world as we know it, and I want to learn how they have a specific impact in Lithography. 
