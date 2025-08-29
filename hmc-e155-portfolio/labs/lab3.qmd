@@ -1,9 +1,10 @@
 ---
-title: "Lab 3"
-description: "Keypad Scanner"
-author: "Drake Gonzales"
-date: "10/27/25"
+theme: solar
+date: "12/01/25"
 categories:
   - labreport
 draft: false
 ---
+## Lab 3 - Keypad Scanner
+
+## Introduction

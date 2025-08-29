@@ -5,15 +5,28 @@ website:
   title: "E155 portfolio"
   navbar:
     left:
-      - href: index.qmd
-        text: Home
-      - href: blog.qmd
-        text: Blog
-      - href: labs.qmd 
-        text: Labs
-      - href: resources.qmd
-        text: Resources
-
+      - text: Home
+        href: index.qmd
+      - text: Blog
+        href: blog.qmd
+      - text: Labs
+        menu:
+          - text: Lab1
+            href: labs/lab1.qmd
+          - text: Lab2
+            href: labs/lab2.qmd
+          - text: Lab3
+            href: labs/lab3.qmd
+          - text: Lab4
+            href: labs/lab4.qmd
+          - text: Lab5
+            href: labs/lab5.qmd
+          - text: Lab6
+            href: labs/lab6.qmd
+          - text: Lab7
+            href: labs/lab7.qmd
+      - text: Resources
+        href: resources.qmd
 format:
   html:
     theme:

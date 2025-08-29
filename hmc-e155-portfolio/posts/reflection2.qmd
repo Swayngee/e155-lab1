@@ -1,7 +1,5 @@
 ---
 title: "Lab 2"
-description: "Initial reflection"
-author: "Drake Gonzales"
 date: "10/27/25"
 categories:
   - reflection

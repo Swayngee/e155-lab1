@@ -1,9 +1,10 @@
 ---
-title: "Lab 6"
-description: "The Internet of Things and Serial Peripheral Interface"
-author: "Drake Gonzales"
-date: "12/02/25"
+theme: solar
+date: "12/01/25"
 categories:
   - labreport
 draft: false
 ---
+## Lab 6 - The Internet of Things and Serial Peripheral Interface
+
+## Introduction

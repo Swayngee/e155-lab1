@@ -8,4 +8,3 @@ listing:
   categories: false
 
 ---
-Below are the lab reports for each lab completed throughout this semester!

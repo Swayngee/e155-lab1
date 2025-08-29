@@ -1,9 +1,10 @@
 ---
-title: "Lab 7"
-description: "The Advanced Encryption Standard"
-author: "Drake Gonzales"
-date: "12/03/25"
+date: "12/01/25"
+theme: solar
 categories:
   - labreport
 draft: false
 ---
+## Lab 7 - The Advanced Encryption Standard (AES)
+
+## Introduction
