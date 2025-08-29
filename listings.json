@@ -2,14 +2,14 @@
   {
     "listing": "/blog.html",
     "items": [
-      "/posts/reflection7.html",
-      "/posts/reflection6.html",
-      "/posts/reflection5.html",
-      "/posts/reflection4.html",
-      "/posts/reflection3.html",
-      "/posts/reflection2.html",
+      "/posts/first-post.html",
       "/posts/reflection1.html",
-      "/posts/first-post.html"
+      "/posts/reflection2.html",
+      "/posts/reflection3.html",
+      "/posts/reflection4.html",
+      "/posts/reflection5.html",
+      "/posts/reflection6.html",
+      "/posts/reflection7.html"
     ]
   },
   {
