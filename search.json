@@ -1,0 +1,37 @@
+[
+  {
+    "objectID": "blog.html",
+    "href": "blog.html",
+    "title": "E155 Blog posts",
+    "section": "",
+    "text": "Below are blog posts that consist of all my reflections within E155! I also included some class notes for clarity\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nLab 7\n\n\nInitial reflection\n\n\n\n\n\nDec 4, 2025\n\n\nDrake Gonzales\n\n\n\n\n\n\n\n\n\n\n\n\nLab 6\n\n\nInitial reflection\n\n\n\n\n\nDec 3, 2025\n\n\nDrake Gonzales\n\n\n\n\n\n\n\n\n\n\n\n\nLab 5\n\n\nInitial reflection\n\n\n\n\n\nDec 2, 2025\n\n\nDrake Gonzales\n\n\n\n\n\n\n\n\n\n\n\n\nLab 4\n\n\nInitial reflection\n\n\n\n\n\nDec 1, 2025\n\n\nDrake Gonzales\n\n\n\n\n\n\n\n\n\n\n\n\nLab 3\n\n\nInitial reflection\n\n\n\n\n\nNov 27, 2025\n\n\nDrake Gonzales\n\n\n\n\n\n\n\n\n\n\n\n\nLab 2\n\n\nInitial reflection\n\n\n\n\n\nOct 27, 2025\n\n\nDrake Gonzales\n\n\n\n\n\n\n\n\n\n\n\n\nLab 1\n\n\nInitial reflection\n\n\n\n\n\nSep 27, 2025\n\n\nDrake Gonzales\n\n\n\n\n\n\n\n\n\n\n\n\nLab 0\n\n\nInitial reflection\n\n\n\n\n\nAug 27, 2025\n\n\nDrake Gonzales\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "E155 portfolio",
+    "section": "",
+    "text": "Hello! My name is Drake Gonzales and I am a Junior Engineering major at Harvey Mudd College. I am interested in studying computer and electrical engineering, with a specific focus in Lithography. This website, created with Quarto, posseses all of my work that I have completed in E155 “Microprocessor System:Design & Application”\nDate created: 8/27/2025"
+  },
+  {
+    "objectID": "posts/first-post.html",
+    "href": "posts/first-post.html",
+    "title": "Lab 0",
+    "section": "",
+    "text": "Throughout my tenure at Harvey Mudd College I have taken many classes within the engineering discipline. Most of these classes, although cool, had little to do with what I was actually passionate about, which is lithography. Lithography is a process within the chip-making industry, that etches computer chips onto silicon wafers. This process, although existing for many decades, still feels like magic to me, which is the reason I am so passionate about it.\nWithin E155 I would like to further my knowledge of computer engineering and really start grasping how micro-controllers work. Micro-controllers make up the digital world as we know it, and I want to learn how they have a specific impact in Lithography."
+  },
+  {
+    "objectID": "labs.html",
+    "href": "labs.html",
+    "title": "E155 Labs",
+    "section": "",
+    "text": "Below are the lab reports for each lab completed throughout this semester!\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nLab 1\n\n\nA familiarization of Micro-controller units (MCU’s) and field-programmable gate arrays (FPGA’s)\n\n\n\n\n\nAug 27, 2025\n\n\nDrake Gonzales\n\n\n\n\n\n\n\n\n\n\n\n\nLab 2\n\n\nMultiplexed 7-Segment Display\n\n\n\n\n\nSep 27, 2025\n\n\nDrake Gonzales\n\n\n\n\n\n\n\n\n\n\n\n\nLab 3\n\n\nKeypad Scanner\n\n\n\n\n\nOct 27, 2025\n\n\nDrake Gonzales\n\n\n\n\n\n\n\n\n\n\n\n\nLab 4\n\n\nDigital Audio\n\n\n\n\n\nNov 27, 2025\n\n\nDrake Gonzales\n\n\n\n\n\n\n\n\n\n\n\n\nLab 5\n\n\nInterrupts\n\n\n\n\n\nDec 1, 2025\n\n\nDrake Gonzales\n\n\n\n\n\n\n\n\n\n\n\n\nLab 6\n\n\nThe Internet of Things and Serial Peripheral Interface\n\n\n\n\n\nDec 2, 2025\n\n\nDrake Gonzales\n\n\n\n\n\n\n\n\n\n\n\n\nLab 7\n\n\nThe Advanced Encryption Standard\n\n\n\n\n\nDec 3, 2025\n\n\nDrake Gonzales\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "resources.html",
+    "href": "resources.html",
+    "title": "Additional course resources",
+    "section": "",
+    "text": "Class website: https://hmc-e155.github.io/\nE155 development board schematic: https://hmc-e155.github.io/assets/doc/E155_v4_Dev_Board_BOM.html\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNo matching items"
+  }
+]

@@ -1,9 +1,0 @@
----
-title: "Lab 5"
-description: "Interrupts"
-author: "Drake Gonzales"
-date: "12/01/25"
-categories:
-  - labreport
-draft: false
----

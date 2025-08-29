@@ -1,9 +1,0 @@
----
-title: "Lab 2"
-description: "Multiplexed 7-Segment Display"
-author: "Drake Gonzales"
-date: "9/27/25"
-categories:
-  - labreport
-draft: false
----

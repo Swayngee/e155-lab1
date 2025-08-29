@@ -1,9 +1,0 @@
----
-title: "Lab 7"
-description: "The Advanced Encryption Standard"
-author: "Drake Gonzales"
-date: "12/03/25"
-categories:
-  - labreport
-draft: false
----
