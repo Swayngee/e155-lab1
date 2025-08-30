@@ -1,0 +1,61 @@
+m255
+K4
+z2
+!s11f vlog 2024.2 2024.05, May 20 2024
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dC:/Users/drgonzales/Downloads
+vled
+2C:/Users/drgonzales/Downloads/led.sv
+Z1 DXx6 sv_std 3 std 0 22 9oUSJO;AeEaW`l:M@^WG92
+Z2 !s110 1756594141
+!i10b 1
+!s100 KMe7:_4h_BCg[:?JS=Pgi1
+IfnFQN6V4`YdWcmiF9kjj>3
+S1
+R0
+w1756592607
+8C:/Users/drgonzales/Downloads/led.sv
+FC:/Users/drgonzales/Downloads/led.sv
+!i122 0
+L0 1 25
+Z3 VDg1SIo80bB@j0V0VzS_@n1
+Z4 OL;L;2024.2;79
+r1
+!s85 0
+31
+Z5 !s108 1756594141.000000
+!s107 C:/Users/drgonzales/Downloads/led.sv|
+!s90 -reportprogress|300|-work|work|-vopt|-sv|-stats=none|C:/Users/drgonzales/Downloads/led.sv|
+!i113 0
+Z6 o-work work -sv -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+Z7 tCvgOpt 0
+vtestbench
+2C:/Users/drgonzales/Downloads/source/impl_1/testbenchled.sv
+R1
+R2
+!i10b 1
+!s100 gOoM46SlziB8nbWSj4>LI2
+IgQ88MLOhMOZAaRize<HmA2
+S1
+R0
+w1756593560
+8C:/Users/drgonzales/Downloads/source/impl_1/testbenchled.sv
+FC:/Users/drgonzales/Downloads/source/impl_1/testbenchled.sv
+!i122 1
+L0 4 117
+R3
+R4
+r1
+!s85 0
+31
+R5
+!s107 C:/Users/drgonzales/Downloads/source/impl_1/testbenchled.sv|
+!s90 -reportprogress|300|-work|work|-vopt|-sv|-stats=none|C:/Users/drgonzales/Downloads/source/impl_1/testbenchled.sv|
+!i113 0
+R6
+R7

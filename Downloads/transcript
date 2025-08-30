@@ -1,0 +1,31 @@
+# Reading pref.tcl
+# //  Questa Lattice OEM Edition-64
+# //  Version 2024.2 win64 May 20 2024
+# //
+# // Unpublished work. Copyright 2024 Siemens
+# //
+# // This material contains trade secrets or otherwise confidential information
+# // owned by Siemens Industry Software Inc. or its affiliates (collectively,
+# // "SISW"), or its licensors. Access to and use of this information is strictly
+# // limited as set forth in the Customer's applicable agreements with SISW.
+# //
+# // This material may not be copied, distributed, or otherwise disclosed outside
+# // of the Customer's facilities without the express written permission of SISW,
+# // and may not be used in any way not expressly authorized by SISW.
+# //
+# Loading project lab1
+# Compile of led.sv was successful.
+# Compile of testbenchled.sv was successful.
+# 2 compiles, 0 failed with no errors.
+vsim -gui work.testbench -voptargs=+acc
+# vsim -gui work.testbench -voptargs="+acc" 
+# Start time: 15:49:15 on Aug 30,2025
+# ** Note: (vsim-3812) Design is being optimized...
+# ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility. The +acc switch would be deprecated in a future release.
+# ** Error: C:/Users/drgonzales/Downloads/led.sv(9): Module 'HSOSC' is not defined.
+#  For instance 'hf_osc' at path 'testbench.u_led'
+# Optimization failed
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=1, Warnings=1.
+# Error loading design
+# End time: 15:49:16 on Aug 30,2025, Elapsed time: 0:00:01
+# Errors: 1, Warnings: 9

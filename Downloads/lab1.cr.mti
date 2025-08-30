@@ -1,0 +1,8 @@
+C:/Users/drgonzales/Downloads/source/impl_1/testbenchled.sv {1 {vlog -work work -vopt -sv -stats=none C:/Users/drgonzales/Downloads/source/impl_1/testbenchled.sv
+Questa Lattice OEM Edition-64 vlog 2024.2 Compiler 2024.05 May 20 2024
+-- Compiling module testbench
+
+Top level modules:
+	testbench
+
+} {} {}}
