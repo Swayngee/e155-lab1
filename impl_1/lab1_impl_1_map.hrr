@@ -1,8 +1,0 @@
----------------------------------------------------
-Report for cell LED
-   Instance path: LED
-                     Cell usage:
-                                  cell	      count    Res Usage(%)
-                                  LUT4	          2        100.0
-                               LUTGATE	          2        100.0
-                                 IOBUF	          6        100.0
