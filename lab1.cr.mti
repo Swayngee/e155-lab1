@@ -1,0 +1,22 @@
+C:/Users/drgonzales/Downloads/source/impl_1/testbenchled.sv {1 {vlog -work work -vopt -sv -stats=none C:/Users/drgonzales/Downloads/source/impl_1/testbenchled.sv
+Questa Lattice OEM Edition-64 vlog 2024.2 Compiler 2024.05 May 20 2024
+-- Compiling module testbench
+
+Top level modules:
+	testbench
+
+} {} {}} C:/Users/drgonzales/e155-lab1-main/Downloads/source/impl_1/led.sv {1 {vlog -work work -vopt -sv -stats=none C:/Users/drgonzales/e155-lab1-main/Downloads/source/impl_1/led.sv
+Questa Lattice OEM Edition-64 vlog 2024.2 Compiler 2024.05 May 20 2024
+-- Compiling module LED
+
+Top level modules:
+	LED
+
+} {} {}} C:/Users/drgonzales/e155-lab1-main/Downloads/source/impl_1/testbenchled.sv {1 {vlog -work work -vopt -sv -stats=none C:/Users/drgonzales/e155-lab1-main/Downloads/source/impl_1/testbenchled.sv
+Questa Lattice OEM Edition-64 vlog 2024.2 Compiler 2024.05 May 20 2024
+-- Compiling module testbench
+
+Top level modules:
+	testbench
+
+} {} {}}
