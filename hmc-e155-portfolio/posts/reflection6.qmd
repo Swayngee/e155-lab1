@@ -1,0 +1,8 @@
+---
+title: "Lab 6"
+date: "12/03/25"
+categories:
+  - reflection
+draft: false
+---
+

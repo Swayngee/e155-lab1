@@ -1,0 +1,10 @@
+---
+theme: solar
+date: "12/01/25"
+categories:
+  - labreport
+draft: false
+---
+## Lab 2 - Multiplexed 7-Segment Display
+
+## Introduction

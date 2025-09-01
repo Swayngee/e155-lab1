@@ -1,0 +1,13 @@
+---
+date: "12/01/25"
+theme: solar
+categories:
+  - labreport
+draft: false
+---
+## Lab 7 - The Advanced Encryption Standard (AES)
+
+## Introduction
+
+
+

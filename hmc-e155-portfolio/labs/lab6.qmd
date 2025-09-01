@@ -1,0 +1,10 @@
+---
+theme: solar
+date: "12/01/25"
+categories:
+  - labreport
+draft: false
+---
+## Lab 6 - The Internet of Things and Serial Peripheral Interface
+
+## Introduction

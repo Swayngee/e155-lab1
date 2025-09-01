@@ -1,0 +1,10 @@
+---
+theme: solar
+date: "12/01/25"
+categories:
+  - labreport
+draft: false
+---
+## Lab 4 Digital Audio
+
+## Introduction

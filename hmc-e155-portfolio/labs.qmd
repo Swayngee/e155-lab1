@@ -1,0 +1,10 @@
+---
+title: "E155 Labs"
+theme: solar
+listing:
+  contents: labs
+  sort: "date asc"
+  type: default
+  categories: false
+
+---
