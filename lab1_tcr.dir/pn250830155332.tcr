@@ -1,0 +1,79 @@
+#Start recording tcl command: 8/30/2025 13:05:53
+#Project Location: C:/Users/drgonzales/Downloads; Project name: lab1
+prj_open "C:/Users/drgonzales/Downloads/lab1.rdf"
+prj_add_source "C:/Users/drgonzales/Downloads/LED.ldc" "C:/Users/drgonzales/Downloads/segment.vm"
+prj_add_source "C:/Users/drgonzales/Downloads/LED.ldc"
+prj_enable_source "C:/Users/drgonzales/Downloads/LED.ldc"
+prj_remove_source "C:/Users/drgonzales/Downloads/source/impl_1/top.sv"
+prj_remove_source "C:/Users/drgonzales/Downloads/source/impl_1/segment.vm"
+prj_remove_source "C:/Users/drgonzales/Downloads/source/impl_1/LED.ldc"
+prj_add_source "C:/Users/drgonzales/Downloads/source/impl_1/top.sv"
+prj_run PAR -impl impl_1
+prj_run Export -impl impl_1
+prj_run PAR -impl impl_1
+prj_run Export -impl impl_1
+prj_run PAR -impl impl_1
+prj_run Export -impl impl_1
+prj_run PAR -impl impl_1
+prj_run Export -impl impl_1
+prj_run PAR -impl impl_1
+prj_run Export -impl impl_1
+prj_run PAR -impl impl_1
+prj_run Export -impl impl_1
+prj_add_source "C:/Users/drgonzales/Downloads/source/impl_1/segment.sv"
+prj_remove_source "C:/Users/drgonzales/Downloads/segment.vm"
+prj_add_source "C:/Users/drgonzales/Downloads/source/impl_1/LED.sv"
+prj_run PAR -impl impl_1
+prj_run PAR -impl impl_1
+prj_run Export -impl impl_1
+prj_run PAR -impl impl_1
+prj_run Export -impl impl_1
+prj_run PAR -impl impl_1
+prj_run Export -impl impl_1
+prj_run PAR -impl impl_1
+prj_run Export -impl impl_1
+prj_run PAR -impl impl_1
+prj_run Export -impl impl_1
+prj_run PAR -impl impl_1
+prj_run Export -impl impl_1
+prj_run PAR -impl impl_1
+prj_run Export -impl impl_1
+prj_run PAR -impl impl_1
+prj_run Export -impl impl_1
+prj_run PAR -impl impl_1
+prj_run Export -impl impl_1
+prj_remove_source "C:/Users/drgonzales/Downloads/LED.ldc"
+prj_run PAR -impl impl_1
+prj_run Export -impl impl_1
+prj_add_source "C:/Users/drgonzales/Downloads/source/impl_1/testbench.sv"
+prj_add_source "C:/Users/drgonzales/Downloads/source/impl_1/testbenchled.ldc"
+prj_add_source "C:/Users/drgonzales/Downloads/source/impl_1/testbenchled.sv"
+prj_run PAR -impl impl_1
+prj_run Export -impl impl_1
+prj_remove_source "C:/Users/drgonzales/Downloads/source/impl_1/testbenchled.ldc"
+prj_run PAR -impl impl_1
+prj_run Export -impl impl_1
+prj_run PAR -impl impl_1
+prj_run Export -impl impl_1
+prj_run PAR -impl impl_1
+prj_run Export -impl impl_1
+prj_run PAR -impl impl_1
+prj_run Export -impl impl_1
+prj_run PAR -impl impl_1
+prj_run Export -impl impl_1
+prj_run PAR -impl impl_1
+prj_run Export -impl impl_1
+prj_run PAR -impl impl_1
+prj_run Export -impl impl_1
+prj_remove_source "C:/Users/drgonzales/Downloads/source/impl_1/LED.sv"
+prj_add_source "C:/Users/drgonzales/Downloads/led.sv"
+prj_run PAR -impl impl_1
+prj_run Export -impl impl_1
+prj_run PAR -impl impl_1
+prj_run Export -impl impl_1
+prj_run Synthesis -impl impl_1
+prj_add_source "C:/Users/drgonzales/Downloads/source/impl_1/led.sv"
+prj_remove_source "C:/Users/drgonzales/Downloads/led.sv"
+prj_run PAR -impl impl_1
+prj_run Export -impl impl_1
+#Stop recording: 8/30/2025 15:53:32

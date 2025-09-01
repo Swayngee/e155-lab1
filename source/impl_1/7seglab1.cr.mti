@@ -1,0 +1,15 @@
+C:/Users/drgonzales/e155-lab1-main/Downloads/source/impl_1/segment.sv {1 {vlog -work work -vopt -sv -stats=none C:/Users/drgonzales/e155-lab1-main/Downloads/source/impl_1/segment.sv
+Questa Lattice OEM Edition-64 vlog 2024.2 Compiler 2024.05 May 20 2024
+-- Compiling module segment
+
+Top level modules:
+	segment
+
+} {} {}} C:/Users/drgonzales/e155-lab1-main/Downloads/source/impl_1/testbench7.sv {1 {vlog -work work -vopt -sv -stats=none C:/Users/drgonzales/e155-lab1-main/Downloads/source/impl_1/testbench7.sv
+Questa Lattice OEM Edition-64 vlog 2024.2 Compiler 2024.05 May 20 2024
+-- Compiling module testbench
+
+Top level modules:
+	testbench
+
+} {} {}}
