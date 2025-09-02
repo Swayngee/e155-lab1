@@ -39,7 +39,42 @@
     "href": "labs/lab1.html#introduction",
     "title": "E155 portfolio",
     "section": "Introduction",
-    "text": "Introduction"
+    "text": "Introduction\nIn this lab, a development board incorporating an MCU, an FPGA, and LEDs was created as the platform for exploring embedded systems. A design was implemented on the FPGA to control a 7-segment LED display and three individual LEDs. Once this lab is completed, four switches will have the capability of displaying all hexadecimal digits on the 7-segment display, and will be able to control two other LED’s based on combinational logic. The third LED will be controlled by a High-Speed Oscillator (HSOSC) have have a blink frequency of 2.4Hz.\nThe design was developed using SystemVerilog, a hardware description language, and was tested using Intels Questa, a logic waveform simulator."
+  },
+  {
+    "objectID": "labs/lab1.html#technical-documentation",
+    "href": "labs/lab1.html#technical-documentation",
+    "title": "E155 portfolio",
+    "section": "Technical Documentation",
+    "text": "Technical Documentation\nThe source code for this lab can be found in this GitHub repo.\nBlock Diagram \nThe block diagram pictured above in Figure 1 displays the internal design of the components used in our FPGA and the 7-segment display. Within the FPGA is pictured an AND gate, an XOR gate, an HSOSC (used as a clock divider), and a combinational logic block used to light our LED’s.\nWiring Schematic\n\n\n\nFigure 2: This schematic shows the wiring and components between our dev board and the 7-segment display\n\n\nFigure 2 above pictures the electrical circuit related to the FPGA and the 7-segment display. It portrays both modules along with the pins used for each module, and the necessary switches, LED’s, and pull down resistors needed. All output LED’s used were connected to 1kΩ resistors to limit the input current directed toward the FPGA."
+  },
+  {
+    "objectID": "labs/lab1.html#results-and-discussion",
+    "href": "labs/lab1.html#results-and-discussion",
+    "title": "E155 portfolio",
+    "section": "Results and Discussion",
+    "text": "Results and Discussion\nThe design implemented onto the FPGA met the primary objective of this lab, which was to display hexadecimal digits on the 7-segment display and control three onboard LEDs. The design created was also very accurate in its ability to display all sixteen hexadecimal values clearly, with each digit easily distinguishable from the others. The timing performance was reliable, and no noticeable delays or glitches occurred during operation. Furthermore, all three LED’s responded correctly to the switch inputs which showed that the logic was implemented correctly on the FPGA.\n\nTestbench Simulation\nThe following simulations were run on Intel’s Questa. This was done to visually see the waveforms created as a result of the logic used. To complete this simulation, a testbench was created to run test vectors through the logic created. Every couple of clock cycles a new combination of switches will be ran through the logic to test accuracy. The testbench then records the clock, the inputs, the outputs, and the expected outputs based on the test vectors.\n7-segment Display Simulation \nAbove shows a successful simulation of our 7-segment display. Each output corresponds to the expected output which shows correct usage of combinational logic within out 7-segment module.\nLED Display Simulation \nAbove again shows a successful simulation but for the three LED’s. Each output again corresponds to the expected output which suggests that our LED’s will perform correctly when wired together. Not pictured above is Led[2], which was validated using an oscilliscope.\nTop Module Simulation \nAbove is the overall module from our implemented design. It shows both outputs, their expected values, and the input into our system. This simulation was another success based on our outputs and the expected outputs from our test vectors."
+  },
+  {
+    "objectID": "labs/lab1.html#conclusion",
+    "href": "labs/lab1.html#conclusion",
+    "title": "E155 portfolio",
+    "section": "Conclusion",
+    "text": "Conclusion\nThe design created successfully showed all hexadecimal digits on the 7-segment display, and blinked three LED’s based on four input switches. This lab was completed in 12 hours."
+  },
+  {
+    "objectID": "labs/lab1.html#ai-prototype",
+    "href": "labs/lab1.html#ai-prototype",
+    "title": "E155 portfolio",
+    "section": "AI Prototype",
+    "text": "AI Prototype\n\nBelow is the code generated from Claude, an LLM specializing in programming.\nmodule led_blinker ( output logic led );\n// Internal oscillator clock signal\nlogic clk_48mhz;\n\n// Counter for frequency division\n// 48MHz / 2Hz = 24M counts per half period\n// Need 25 bits to count up to 24M (2^25 = 33.5M)\nlogic [24:0] counter;\n\n// LED state register\nlogic led_state;\n\n// Instantiate the internal high-frequency oscillator\n// HFOSC primitive for UP5K - runs at 48 MHz\nSB_HFOSC #(\n    .CLKHF_DIV(\"0b00\")  // No division, full 48 MHz\n) hfosc_inst (\n    .CLKHFPU(1'b1),     // Power up the oscillator\n    .CLKHFEN(1'b1),     // Enable the oscillator\n    .CLKHF(clk_48mhz)   // 48 MHz output clock\n);\n\n// Calculate the count needed for 2 Hz toggle (1 Hz blink)\n// 48,000,000 / 4 = 12,000,000 counts per quarter period\n// This gives us 2 Hz toggle rate (1 Hz visible blink)\nlocalparam logic [24:0] TOGGLE_COUNT = 25'd12_000_000;\n\n// Counter and LED control logic\nalways_ff @(posedge clk_48mhz) begin\n    if (counter &gt;= TOGGLE_COUNT - 1) begin\n        counter &lt;= '0;              // Reset counter using SystemVerilog syntax\n        led_state &lt;= ~led_state;    // Toggle LED state\n    end else begin\n        counter &lt;= counter + 1'b1;\n    end\nend\n\n// Output assignment\nassign led = led_state;\nendmodule\n\n\nCode Review\nThe output from the LLM from above is pretty sophisticated. It hosts the correct inputs and outputs, and the module initializes the HSOSC to blink a frequency of 2 Hz. The only problem that was encountered with the output from this LLM is that it did not get the correct clock High-Speed Oscillator library. The error can be seen below.\nINFO &lt;2043018&gt; - C:/Users/drgonzales/e155-lab1-main/fpga/src/lab1/source/impl_1/Ailab1.sv(1,8-1,14) (VERI-1018) compiling module ‘AiLab1’ WARNING &lt;2043063&gt; - C:/Users/drgonzales/e155-lab1-main/fpga/src/lab1/source/impl_1/Ailab1.sv(18,5-24,7) (VERI-1063) instantiating unknown module ‘SB_HFOSC’ Done: design load finished with (0) errors, and (4) warnings\nRadiant (the synthesizer) hosts a wide variety of libraries that pertain to different FPGA’s. Claude probably got confused on which library to use as a result. However, the overall logic generated by Claude flowed well and showed no errors on the synthesizer. Next time when using Claude, or any LLM, be sure to correctly outline which libraries to be used for each module."
+  },
+  {
+    "objectID": "labs/lab1.html#references",
+    "href": "labs/lab1.html#references",
+    "title": "E155 portfolio",
+    "section": "References",
+    "text": "References\nClass website"
   },
   {
     "objectID": "labs/lab2.html#introduction",
@@ -74,7 +109,7 @@
     "href": "labs.html",
     "title": "E155 Labs",
     "section": "",
-    "text": "Lab 1 - A familiarization of Micro-controller units (MCU’s) and field-programmable gate arrays (FPGA’s)\n\n\n\n\n\n\n\n\nDec 1, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nLab 3 - Keypad Scanner\n\n\n\n\n\n\n\n\nDec 1, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nLab 2 - Multiplexed 7-Segment Display\n\n\n\n\n\n\n\n\nDec 1, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nLab 6 - The Internet of Things and Serial Peripheral Interface\n\n\n\n\n\n\n\n\nDec 1, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nLab 7 - The Advanced Encryption Standard (AES)\n\n\n\n\n\n\n\n\nDec 1, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nLab 5 Interrupts\n\n\n\n\n\n\n\n\nDec 1, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nLab 4 Digital Audio\n\n\n\n\n\n\n\n\nDec 1, 2025\n\n\n\n\n\nNo matching items"
+    "text": "Lab 1 - A familiarization of Micro-controller units (MCU’s) and field-programmable gate arrays (FPGA’s)\n\n\n\n\n\n\n\n\nAug 31, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nLab 3 - Keypad Scanner\n\n\n\n\n\n\n\n\nDec 1, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nLab 2 - Multiplexed 7-Segment Display\n\n\n\n\n\n\n\n\nDec 1, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nLab 6 - The Internet of Things and Serial Peripheral Interface\n\n\n\n\n\n\n\n\nDec 1, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nLab 7 - The Advanced Encryption Standard (AES)\n\n\n\n\n\n\n\n\nDec 1, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nLab 5 Interrupts\n\n\n\n\n\n\n\n\nDec 1, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nLab 4 Digital Audio\n\n\n\n\n\n\n\n\nDec 1, 2025\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "resources.html",

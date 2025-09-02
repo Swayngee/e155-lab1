@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2025-12-01">
+<meta name="dcterms.date" content="2025-08-31">
 
 <title>lab1 – E155 portfolio</title>
 <style>
@@ -155,6 +155,17 @@ ul.task-list li input[type="checkbox"] {
   <ul>
   <li><a href="#lab-1---a-familiarization-of-micro-controller-units-mcus-and-field-programmable-gate-arrays-fpgas" id="toc-lab-1---a-familiarization-of-micro-controller-units-mcus-and-field-programmable-gate-arrays-fpgas" class="nav-link active" data-scroll-target="#lab-1---a-familiarization-of-micro-controller-units-mcus-and-field-programmable-gate-arrays-fpgas">Lab 1 - A familiarization of Micro-controller units (MCU’s) and field-programmable gate arrays (FPGA’s)</a></li>
   <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#technical-documentation" id="toc-technical-documentation" class="nav-link" data-scroll-target="#technical-documentation">Technical Documentation</a></li>
+  <li><a href="#results-and-discussion" id="toc-results-and-discussion" class="nav-link" data-scroll-target="#results-and-discussion">Results and Discussion</a>
+  <ul class="collapse">
+  <li><a href="#testbench-simulation" id="toc-testbench-simulation" class="nav-link" data-scroll-target="#testbench-simulation">Testbench Simulation</a></li>
+  </ul></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
+  <li><a href="#ai-prototype" id="toc-ai-prototype" class="nav-link" data-scroll-target="#ai-prototype">AI Prototype</a>
+  <ul class="collapse">
+  <li><a href="#code-review" id="toc-code-review" class="nav-link" data-scroll-target="#code-review">Code Review</a></li>
+  </ul></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul>
 </nav>
     </div>
@@ -176,7 +187,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">December 1, 2025</p>
+      <p class="date">August 31, 2025</p>
     </div>
   </div>
   
@@ -193,6 +204,96 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="introduction" class="level2">
 <h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p>In this lab, a development board incorporating an MCU, an FPGA, and LEDs was created as the platform for exploring embedded systems. A design was implemented on the FPGA to control a 7-segment LED display and three individual LEDs. Once this lab is completed, four switches will have the capability of displaying all hexadecimal digits on the 7-segment display, and will be able to control two other LED’s based on combinational logic. The third LED will be controlled by a High-Speed Oscillator (HSOSC) have have a blink frequency of 2.4Hz.</p>
+<p>The design was developed using SystemVerilog, a hardware description language, and was tested using Intels Questa, a logic waveform simulator.</p>
+</section>
+<section id="technical-documentation" class="level2">
+<h2 class="anchored" data-anchor-id="technical-documentation">Technical Documentation</h2>
+<p>The source code for this lab can be found in this <a href="https://github.com/Swayngee/e155-lab1/tree/main/fpga/src/lab1">GitHub repo</a>.</p>
+<p><strong>Block Diagram</strong> <img src="../images/Block1.jpg" class="img-fluid" alt="Figure 1: This block diagram shows the connection between the MCU, FPGA, and LEDs used in Lab 1."></p>
+<p>The block diagram pictured above in Figure 1 displays the internal design of the components used in our FPGA and the 7-segment display. Within the FPGA is pictured an AND gate, an XOR gate, an HSOSC (used as a clock divider), and a combinational logic block used to light our LED’s.</p>
+<p><strong>Wiring Schematic</strong></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/Schematic1.jpg" class="img-fluid figure-img"></p>
+<figcaption>Figure 2: This schematic shows the wiring and components between our dev board and the 7-segment display</figcaption>
+</figure>
+</div>
+<p>Figure 2 above pictures the electrical circuit related to the FPGA and the 7-segment display. It portrays both modules along with the pins used for each module, and the necessary switches, LED’s, and pull down resistors needed. All output LED’s used were connected to 1kΩ resistors to limit the input current directed toward the FPGA.</p>
+</section>
+<section id="results-and-discussion" class="level2">
+<h2 class="anchored" data-anchor-id="results-and-discussion">Results and Discussion</h2>
+<p>The design implemented onto the FPGA met the primary objective of this lab, which was to display hexadecimal digits on the 7-segment display and control three onboard LEDs. The design created was also very accurate in its ability to display all sixteen hexadecimal values clearly, with each digit easily distinguishable from the others. The timing performance was reliable, and no noticeable delays or glitches occurred during operation. Furthermore, all three LED’s responded correctly to the switch inputs which showed that the logic was implemented correctly on the FPGA.</p>
+<section id="testbench-simulation" class="level3">
+<h3 class="anchored" data-anchor-id="testbench-simulation">Testbench Simulation</h3>
+<p>The following simulations were run on Intel’s Questa. This was done to visually see the waveforms created as a result of the logic used. To complete this simulation, a testbench was created to run test vectors through the logic created. Every couple of clock cycles a new combination of switches will be ran through the logic to test accuracy. The testbench then records the clock, the inputs, the outputs, and the expected outputs based on the test vectors.</p>
+<p><strong>7-segment Display Simulation</strong> <img src="../images/testbenchlab11.png" class="img-fluid" alt="Figure 3: Above pictures the waveforms corresponding to the combinational logic used for the 7-segment display"></p>
+<p>Above shows a successful simulation of our 7-segment display. Each output corresponds to the expected output which shows correct usage of combinational logic within out 7-segment module.</p>
+<p><strong>LED Display Simulation</strong> <img src="../images/testbenchlab12.png" class="img-fluid" alt="Figure 4: Above pictures the waveforms corresponding to the logic used for flashing Led[0] and Led[1]"></p>
+<p>Above again shows a successful simulation but for the three LED’s. Each output again corresponds to the expected output which suggests that our LED’s will perform correctly when wired together. Not pictured above is Led[2], which was validated using an oscilliscope.</p>
+<p><strong>Top Module Simulation</strong> <img src="../images/testbenchlab13.png" class="img-fluid" alt="Figure 5: Above pictures the waveforms corresponding to the top module for the implemented design"></p>
+<p>Above is the overall module from our implemented design. It shows both outputs, their expected values, and the input into our system. This simulation was another success based on our outputs and the expected outputs from our test vectors.</p>
+</section>
+</section>
+<section id="conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
+<p>The design created successfully showed all hexadecimal digits on the 7-segment display, and blinked three LED’s based on four input switches. This lab was completed in 12 hours.</p>
+</section>
+<section id="ai-prototype" class="level2">
+<h2 class="anchored" data-anchor-id="ai-prototype">AI Prototype</h2>
+<section id="below-is-the-code-generated-from-claude-an-llm-specializing-in-programming." class="level4">
+<h4 class="anchored" data-anchor-id="below-is-the-code-generated-from-claude-an-llm-specializing-in-programming.">Below is the code generated from Claude, an LLM specializing in programming.</h4>
+<p>module led_blinker ( output logic led );</p>
+<pre><code>// Internal oscillator clock signal
+logic clk_48mhz;
+
+// Counter for frequency division
+// 48MHz / 2Hz = 24M counts per half period
+// Need 25 bits to count up to 24M (2^25 = 33.5M)
+logic [24:0] counter;
+
+// LED state register
+logic led_state;
+
+// Instantiate the internal high-frequency oscillator
+// HFOSC primitive for UP5K - runs at 48 MHz
+SB_HFOSC #(
+    .CLKHF_DIV("0b00")  // No division, full 48 MHz
+) hfosc_inst (
+    .CLKHFPU(1'b1),     // Power up the oscillator
+    .CLKHFEN(1'b1),     // Enable the oscillator
+    .CLKHF(clk_48mhz)   // 48 MHz output clock
+);
+
+// Calculate the count needed for 2 Hz toggle (1 Hz blink)
+// 48,000,000 / 4 = 12,000,000 counts per quarter period
+// This gives us 2 Hz toggle rate (1 Hz visible blink)
+localparam logic [24:0] TOGGLE_COUNT = 25'd12_000_000;
+
+// Counter and LED control logic
+always_ff @(posedge clk_48mhz) begin
+    if (counter &gt;= TOGGLE_COUNT - 1) begin
+        counter &lt;= '0;              // Reset counter using SystemVerilog syntax
+        led_state &lt;= ~led_state;    // Toggle LED state
+    end else begin
+        counter &lt;= counter + 1'b1;
+    end
+end
+
+// Output assignment
+assign led = led_state;</code></pre>
+<p>endmodule</p>
+</section>
+<section id="code-review" class="level3">
+<h3 class="anchored" data-anchor-id="code-review">Code Review</h3>
+<p>The output from the LLM from above is pretty sophisticated. It hosts the correct inputs and outputs, and the module initializes the HSOSC to blink a frequency of 2 Hz. The only problem that was encountered with the output from this LLM is that it did not get the correct clock High-Speed Oscillator library. The error can be seen below.</p>
+<p><strong>INFO &lt;2043018&gt; - C:/Users/drgonzales/e155-lab1-main/fpga/src/lab1/source/impl_1/Ailab1.sv(1,8-1,14) (VERI-1018) compiling module ‘AiLab1’ WARNING &lt;2043063&gt; - C:/Users/drgonzales/e155-lab1-main/fpga/src/lab1/source/impl_1/Ailab1.sv(18,5-24,7) (VERI-1063) instantiating unknown module ‘SB_HFOSC’ Done: design load finished with (0) errors, and (4) warnings</strong></p>
+<p>Radiant (the synthesizer) hosts a wide variety of libraries that pertain to different FPGA’s. Claude probably got confused on which library to use as a result. However, the overall logic generated by Claude flowed well and showed no errors on the synthesizer. Next time when using Claude, or any LLM, be sure to correctly outline which libraries to be used for each module.</p>
+</section>
+</section>
+<section id="references" class="level2">
+<h2 class="anchored" data-anchor-id="references">References</h2>
+<p><a href="https://hmc-e155.github.io/">Class website</a></p>
 
 
 </section>
