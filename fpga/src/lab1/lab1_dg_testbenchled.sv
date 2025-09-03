@@ -1,18 +1,16 @@
-/// Testbench module tests another module called the device under test(DUT).
-// It applies inputs to DUT and check if outputs are as expected.
-// User provides patterns of inputs & desired outputs called testvectors.
-module testbench();
+// Drake Gonzales
+// drgonzales@g.hmc.edu
+// This module was made for the purpose of testing the LED module. This runs test vectors for Led[1:0].
+// 9/2/25
+
+module lab1_dg_testbenchled();
 logic clk, reset;
-// 'clk' & 'reset' are common names for the clock and the reset, 
- // but they're not reserved.
 logic [3:0] s;
 logic [1:0] led, ledexpected;
-// These variables or signals represent 3 inputs, 2 outputs, 2 expected 
-// outputs, respectively.
 logic [31:0] vectornum, errors;
 logic [5:0] testvectors[10000:0];
 
-LED u_led(s, led);
+lab1_dg_led u_led(s, led);
 //// Generate clock.
 always
 begin
@@ -46,10 +44,11 @@ $display(" outputs = %b (%b expected)", led, ledexpected);
 errors = errors + 1;
 end
 vectornum = vectornum + 1;
-if (testvectors[vectornum] === 5'bx) begin
+ if (testvectors[vectornum] === 6'bx) begin
 $display("%d tests completed with %d errors", vectornum, 
 errors);
 $stop;
 end
 end
+
 endmodule

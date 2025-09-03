@@ -1,3 +1,8 @@
+// Drake Gonzales
+// drgonzales@g.hmc.edu
+// Testvectors for the 7-segment display
+// 9/2/25
+
 // s_seg
 0000_1000000
 0001_1001111

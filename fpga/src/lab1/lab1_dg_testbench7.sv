@@ -1,14 +1,15 @@
-/// Testbench module tests another module called the device under test(DUT).
-// It applies inputs to DUT and check if outputs are as expected.
-// User provides patterns of inputs & desired outputs called testvectors.
-module testbench();
+// Drake Gonzales
+// drgonzales@g.hmc.edu
+// This module was made to run testvectors through a simulation to test the 7-segment design. 
+// 9/2/25
+module lab1_dg_testbench7();
 logic clk, reset;
 logic [3:0] s;
 logic [6:0] seg, segexpected;
 logic [31:0] vectornum, errors;
 logic [10:0] testvectors[10000:0];
 
-segment u_segment(s, seg);
+lab1_dg_segment u_segment(s, seg);
 //// Generate clock.
 always
 begin
@@ -54,7 +55,7 @@ end
 //// In any event, increment the count of vectors.
 vectornum = vectornum + 1;
 
-if (testvectors[vectornum] === 5'bx) begin
+ if (testvectors[vectornum] === 11'bx) begin
 
 $display("%d tests completed with %d errors", vectornum, 
 errors);
@@ -62,4 +63,5 @@ errors);
 $stop;
 end
 end
+
 endmodule
