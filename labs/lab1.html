@@ -210,7 +210,13 @@ ul.task-list li input[type="checkbox"] {
 <section id="technical-documentation" class="level2">
 <h2 class="anchored" data-anchor-id="technical-documentation">Technical Documentation</h2>
 <p>The source code for this lab can be found in this <a href="https://github.com/Swayngee/e155-lab1/tree/main/fpga/src/lab1">GitHub repo</a>.</p>
-<p><strong>Block Diagram</strong> <img src="../images/Block1.jpg" class="img-fluid" alt="Figure 1: This block diagram shows the connection between the MCU, FPGA, and LEDs used in Lab 1."></p>
+<p><strong>Block Diagram</strong></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/Block1.jpg" class="img-fluid figure-img"></p>
+<figcaption>Figure 1: This block diagram shows the connection between the MCU, FPGA, and LEDs used in Lab 1.</figcaption>
+</figure>
+</div>
 <p>The block diagram pictured above in Figure 1 displays the internal design of the components used in our FPGA and the 7-segment display. Within the FPGA is pictured an AND gate, an XOR gate, an HSOSC (used as a clock divider), and a combinational logic block used to light our LED’s.</p>
 <p><strong>Wiring Schematic</strong></p>
 <div class="quarto-figure quarto-figure-center">
@@ -227,11 +233,29 @@ ul.task-list li input[type="checkbox"] {
 <section id="testbench-simulation" class="level3">
 <h3 class="anchored" data-anchor-id="testbench-simulation">Testbench Simulation</h3>
 <p>The following simulations were run on Intel’s Questa. This was done to visually see the waveforms created as a result of the logic used. To complete this simulation, a testbench was created to run test vectors through the logic created. Every couple of clock cycles a new combination of switches will be ran through the logic to test accuracy. The testbench then records the clock, the inputs, the outputs, and the expected outputs based on the test vectors.</p>
-<p><strong>7-segment Display Simulation</strong> <img src="../images/testbenchlab11.png" class="img-fluid" alt="Figure 3: Above pictures the waveforms corresponding to the combinational logic used for the 7-segment display"></p>
+<p><strong>7-segment Display Simulation</strong></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/testbenchlab11.png" class="img-fluid figure-img"></p>
+<figcaption>Figure 3: Above pictures the waveforms corresponding to the combinational logic used for the 7-segment display</figcaption>
+</figure>
+</div>
 <p>Above shows a successful simulation of our 7-segment display. Each output corresponds to the expected output which shows correct usage of combinational logic within out 7-segment module.</p>
-<p><strong>LED Display Simulation</strong> <img src="../images/testbenchlab12.png" class="img-fluid" alt="Figure 4: Above pictures the waveforms corresponding to the logic used for flashing Led[0] and Led[1]"></p>
+<p><strong>LED Display Simulation</strong></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/testbenchlab12.png" class="img-fluid figure-img"></p>
+<figcaption>Figure 4: Above pictures the waveforms corresponding to the logic used for flashing Led[0] and Led[1]</figcaption>
+</figure>
+</div>
 <p>Above again shows a successful simulation but for the three LED’s. Each output again corresponds to the expected output which suggests that our LED’s will perform correctly when wired together. Not pictured above is Led[2], which was validated using an oscilliscope.</p>
-<p><strong>Top Module Simulation</strong> <img src="../images/testbenchlab13.png" class="img-fluid" alt="Figure 5: Above pictures the waveforms corresponding to the top module for the implemented design"></p>
+<p><strong>Top Module Simulation</strong></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/testbenchlab13.png" class="img-fluid figure-img"></p>
+<figcaption>Figure 5: Above pictures the waveforms corresponding to the top module for the implemented design</figcaption>
+</figure>
+</div>
 <p>Above is the overall module from our implemented design. It shows both outputs, their expected values, and the input into our system. This simulation was another success based on our outputs and the expected outputs from our test vectors.</p>
 </section>
 </section>
