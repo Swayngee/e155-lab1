@@ -13,23 +13,29 @@ In this lab, a development board incorporating an MCU, an FPGA, and LEDs was cre
 
 The design was developed using SystemVerilog, a hardware description language, and was tested using Intels Questa, a logic waveform simulator. 
 
+
 ## Technical Documentation 
 
 The source code for this lab can be found in this [GitHub repo](https://github.com/Swayngee/e155-lab1/tree/main/fpga/src/lab1).
 
+### Equations
+
+To find the overall input current for the design the formula V-Vf-IR=0 was used. The knowns for this equation are Vin, which is 3.3V, Vf, which is 2.1V, and the resistance used was 162Ω based on how bright the light was. Using this, the current comes out to 7.41mA, which is the upperbound of acceptable current going into FPGA pins. 
+
+Next, to be able to solve for the correct clock cycles to correctly toggle led[2], solve first for time by doing 1/F, which is 0.416 seconds for two toggles (on and off). Then divide this by 2 to get 1 toggle (on), which is 0.208 seconds. Finally, to solve for amount of cycles the equation is N = t(toggle)* frequency(clk). Solving for this, N comes out to be 10,000,000 cycles.  
+
+
 **Block Diagram**
+
 ![Figure 1: This block diagram shows the connection between the MCU, FPGA, and LEDs used in Lab 1.](../images/Block1.jpg)
 
 The block diagram pictured above in Figure 1 displays the internal design of the components used in our FPGA and the 7-segment display. Within the FPGA is pictured an AND gate, an XOR gate, an HSOSC (used as a clock divider), and a combinational logic block used to light our LED's.
-
-
-
 
 **Wiring Schematic**
 
 ![Figure 2: This schematic shows the wiring and components between our dev board and the 7-segment display](../images/Schematic1.jpg)
 
-Figure 2 above pictures the electrical circuit related to the FPGA and the 7-segment display. It portrays both modules along with the pins used for each module, and the necessary switches, LED's, and pull down resistors needed. All output LED's used were connected to 1kΩ resistors to limit the input current directed toward the FPGA. 
+Figure 2 above pictures the electrical circuit related to the FPGA and the 7-segment display. It portrays both modules along with the pins used for each module, and the necessary switches, LED's, and pull down resistors needed. All output LED's used were connected to 162Ω resistors to limit the input current directed toward the FPGA. 
 
 ## Results and Discussion
 
@@ -41,16 +47,19 @@ Furthermore, all three LED's responded correctly to the switch inputs which show
 The following simulations were run on Intel's Questa. This was done to visually see the waveforms created as a result of the logic used. To complete this simulation, a testbench was created to run test vectors through the logic created. Every couple of clock cycles a new combination of switches will be ran through the logic to test accuracy. The testbench then records the clock, the inputs, the outputs, and the expected outputs based on the test vectors.  
 
 **7-segment Display Simulation** 
+
 ![Figure 3: Above pictures the waveforms corresponding to the combinational logic used for the 7-segment display](../images/testbenchlab11.png)
 
 Above shows a successful simulation of our 7-segment display. Each output corresponds to the expected output which shows correct usage of combinational logic within out 7-segment module. 
 
 **LED Display Simulation**
+
 ![Figure 4: Above pictures the waveforms corresponding to the logic used for flashing Led[0] and Led[1]](../images/testbenchlab12.png)
 
 Above again shows a successful simulation but for the three LED's. Each output again corresponds to the expected output which suggests that our LED's will perform correctly when wired together. Not pictured above is Led[2], which was validated using an oscilliscope. 
 
 **Top Module Simulation**
+
 ![Figure 5: Above pictures the waveforms corresponding to the top module for the implemented design](../images/testbenchlab13.png)
 
 Above is the overall module from our implemented design. It shows both outputs, their expected values, and the input into our system. This simulation was another success based on our outputs and the expected outputs from our test vectors. 

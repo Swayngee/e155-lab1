@@ -1,10 +1,69 @@
 ---
 theme: solar
-date: "12/01/25"
+date: "9/2/25"
 categories:
   - labreport
 draft: false
 ---
-## Lab 2 - Multiplexed 7-Segment Display
+
+## Lab 2 - Multiplexed 7-segment display
 
 ## Introduction
+
+In this lab, a time-multiplexing scheme was made to drive two 7-segment display using single set of FPGA I/O pins. Time multiplexing is a strong technique in Computer hardware that basically allows the use to use multiple purposes of a specific hardware at different times. In the case of this lab, time-multiplexing is used by displaying hexidecimal digits on the 7-segement display. The catch is, the display has two digital displays, but is controled by only one set of FPGA pins. Since both digits cannot be displayed at the same time, each digit is flickered to the point to where it appears each are both on at the same time. While this display is in place, five leds on a breadboard will display the addition of each hexadecimal digit. 
+
+The design was developed using SystemVerilog, a hardware description language, and was tested using Intels Questa, a logic waveform simulator. 
+
+
+## Technical Documentation 
+
+The source code for this lab can be found in this [GitHub repo](https://github.com/Swayngee/e155-lab1/tree/main/fpga).
+
+### Equations
+
+To find the overall input current for the design the formula V-Vf-IR=0 was used. The knowns for this equation are Vin, which is 3.3V, Vf, which is around 1.8V, and the resistance used was 162Ω based on how bright the light was. Using this, the current comes out to 9.26mA, which is the upperbound of acceptable current going into FPGA pins. 
+
+Next, to be able to solve for the correct clock cycles to correctly see both digits, first use a frequency in which the human cannot see flickering. This was guessed at around 1k Hz. Then do 1/F to get time = 0.001 seconds.  Then divide this by 2 to get 1 toggle (on), which is 0.0005 seconds. Finally, to solve for amount of cycles the equation is N = t(toggle)* frequency(clk). Solving for this, N comes out to be  24,000 cycles.  
+
+
+**Block Diagram**
+
+![Figure 1: This block diagram shows the connection between the FPGA, its inside hardware, and LEDs used in Lab 2.](../images/Block1.jpg)
+
+The block diagram above hosts the FPGA, a mux, a HSOSC module, and an output for the LED adder module. The input to this whole system is two input switches, s1 and s2, and three outputs, which were the display output, the binary 7-segment output, and the five Led output. 
+
+**Wiring Schematic**
+
+![Figure 2: This schematic shows the wiring and components between our dev board, the 7-segment display, and our Led's](../images/Schematic1.jpg)
+
+Figure 2 above pictures the electrical circuit related to the FPGA and the 7-segment display. It portrays both modules along with the pins used for each module, and the necessary switches, LED's, and pull down resistors needed. All output LED's used were connected to 162Ω resistors to limit the input current directed toward the FPGA. 
+
+## Results and Discussion
+
+The design implemented onto the FPGA met the primary objective of this lab, which was to display hexadecimal digits on the 7-segment display and control three onboard LEDs. The design created was also very accurate in its ability to display all sixteen hexadecimal values clearly, with each digit easily distinguishable from the others. The timing performance was reliable, and no noticeable delays or glitches occurred during operation.
+Furthermore, all three LED's responded correctly to the switch inputs which showed that the logic was implemented correctly on the FPGA. 
+
+### Testbench Simulation
+
+The following simulations were run on Intel's Questa. This was done to visually see the waveforms created as a result of the logic used. To complete this simulation, a testbench was created to run test vectors through the logic created. Every couple of clock cycles a new combination of switches will be ran through the logic to test accuracy. The testbench then records the clock, the inputs, the outputs, and the expected outputs based on the test vectors.  
+
+**7-segment Display Simulation** 
+
+![Figure 3: Above pictures the waveforms corresponding to the combinational logic used for the 7-segment display](../images/testbenchlab11.png)
+
+Above shows a successful simulation of our 7-segment display. Each output corresponds to the expected output which shows correct usage of combinational logic within out 7-segment module. 
+
+**LED Display Simulation**
+
+![Figure 4: Above pictures the waveforms corresponding to the logic used for flashing Led[0] and Led[1]](../images/testbenchlab12.png)
+
+Above again shows a successful simulation but for the three LED's. Each output again corresponds to the expected output which suggests that our LED's will perform correctly when wired together. Not pictured above is Led[2], which was validated using an oscilliscope. 
+
+**Top Module Simulation**
+
+![Figure 5: Above pictures the waveforms corresponding to the top module for the implemented design](../images/testbenchlab13.png)
+
+Above is the overall module from our implemented design. It shows both outputs, their expected values, and the input into our system. This simulation was another success based on our outputs and the expected outputs from our test vectors. 
+
+## Conclusion
+The design created successfully showed all hexadecimal digits on the 7-segment display, and blinked three LED's based on four input switches. This lab was completed in 12 hours. 
