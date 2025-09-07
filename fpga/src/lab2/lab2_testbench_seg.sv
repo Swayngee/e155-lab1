@@ -5,13 +5,12 @@
 
 module lab2_dg_testbench_seg();
 logic clk, reset;
-logic [3:0] s1;
-logic [3:0] s2;
+logic [3:0] mux;
 logic [6:0] seg, segexpected;
 logic [31:0] vectornum, errors;
-logic [14:0] testvectors[10000:0];
+logic [10:0] testvectors[10000:0];
 
-lab2_dg_seg u_segment(s, seg);
+lab2_dg_seg u_segment(mux, seg);
 //// Generate clock.
 always
 begin
@@ -38,7 +37,7 @@ always @(posedge clk)
 begin
 
 #1;
-{s1, s2, segexpected} = testvectors[vectornum];
+{mux, segexpected} = testvectors[vectornum];
 end
 //// Check results on falling edge of clk.
 always @(negedge clk)
@@ -47,7 +46,7 @@ if (~reset) begin
 
 if (seg !== segexpected ) begin
 
-$display("Error: inputs = %b", {s});
+$display("Error: inputs = %b", {mux});
 
 $display(" outputs = %b (%b expected)", seg, 
 segexpected);
@@ -57,7 +56,7 @@ end
 //// In any event, increment the count of vectors.
 vectornum = vectornum + 1;
 
- if (testvectors[vectornum] === 15'bx) begin
+ if (testvectors[vectornum] === 11'bx) begin
 
 $display("%d tests completed with %d errors", vectornum, 
 errors);

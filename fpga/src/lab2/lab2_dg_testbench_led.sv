@@ -7,11 +7,24 @@ module lab2_dg_testbench_led();
 logic clk, reset;
 logic [3:0] s1;
 logic [3:0] s2;
-logic [4:0] led, ledexpected;
+logic [4:0] led, ledexp;
 logic [31:0] vectornum, errors;
 logic [12:0] testvectors[10000:0];
+logic a,b;
+integer v;
 
-lab2_dg_led u_led(s1, s2, led);
+lab2_dg_led_adder u_led(s1, s2, led);
+
+initial begin
+	v = 0;
+		for (a = 0; a<16; a++) begin
+			for (b = 0; b<16; b++) begin
+			testvectors[v] = {a,b,(a+b)};
+			v++;		
+			end
+		end	
+		testvectors[v] = 12'bx;
+end
 //// Generate clock.
 always
 begin
@@ -21,8 +34,6 @@ end
 //// Start of test. 
 initial
 begin
-//// Load vectors stored as 0s and 1s (binary) in .tv file.
-$readmemb("led.tv", testvectors);
 vectornum=0; 
 errors=0;
 reset=1; #22; 
@@ -32,14 +43,14 @@ end
 always @(posedge clk)
 begin
 #1;
-{s1, s2, ledexpected} = testvectors[vectornum];
+{s1, s2, ledexp} = testvectors[vectornum];
 end
 //// Check results on falling edge of clk.
 always @(negedge clk)
 if (~reset) begin
-if (led !== ledexpected) begin
-$display("Error: inputs = %b", {s});
-$display(" outputs = %b (%b expected)", led, ledexpected);
+if (led !== ledexp) begin
+$display("Error: inputs = %b", {s1,s2});
+$display(" outputs = %b (%b expected)", led, ledexp);
 errors = errors + 1;
 end
 vectornum = vectornum + 1;

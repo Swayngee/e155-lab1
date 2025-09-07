@@ -4,10 +4,10 @@
 // as a result of the output segment seg[6:0]
 // 9/4/25
 
-module lab2_dg_seg(input logic [3:0] mux;
+module lab2_dg_seg(input logic [3:0] mux,
                    output logic [6:0] seg);
 	always_comb 
-		case(s)
+		case(mux)
 			4'h0: seg = 7'b1000000; 
 			4'h1: seg = 7'b1001111; 
 			4'h2: seg = 7'b0100100; 
@@ -27,4 +27,3 @@ module lab2_dg_seg(input logic [3:0] mux;
 	        default: seg = 7'b1111111;
 	   endcase
 endmodule        
-

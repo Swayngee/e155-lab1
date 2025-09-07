@@ -3,7 +3,7 @@
 // Testvectors for the 7-segment display
 // 9/4/25
 
-// s_seg
+// mux_seg
 0000_1000000
 0001_1001111
 0010_0100100
