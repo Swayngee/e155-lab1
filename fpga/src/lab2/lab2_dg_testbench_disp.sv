@@ -13,6 +13,7 @@ logic a,b;
 integer v;
 integer cycles;
 
+
 lab2_dg_led_adder u_led(s1, s2, led);
 
 initial begin
