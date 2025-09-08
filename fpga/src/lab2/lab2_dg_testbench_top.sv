@@ -2,10 +2,10 @@ module lab2_dg_testbench_top();
 logic clk, reset;
 logic [3:0] s1;
 logic [3:0] s2;
-logic [4:0] led, ledexp;
+logic [4:0] led;
 logic [6:0] seg;
 logic disp1, disp2;
-logic [31:0] vectornum, errors;
+logic [31:0]  errors;
 
 // expected values
 logic [6:0] segexpected1, segexpected2;

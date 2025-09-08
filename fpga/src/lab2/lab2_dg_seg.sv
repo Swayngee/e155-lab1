@@ -26,4 +26,4 @@ module lab2_dg_seg(input logic [3:0] mux,
 			4'hF: seg = 7'b0001110;
 	        default: seg = 7'b1111111;
 	   endcase
-endmodule        
+endmodule     
