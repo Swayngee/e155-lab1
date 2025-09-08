@@ -9,8 +9,9 @@ logic [3:0] s1;
 logic [3:0] s2;
 logic [4:0] led, ledexp;
 logic [31:0] vectornum, errors;
-logic [12:0] testvectors[10000:0];
-logic a,b;
+logic [13:0] testvectors[256:0];
+integer a, b;
+logic [4:0] sum;
 integer v;
 
 lab2_dg_led_adder u_led(s1, s2, led);
@@ -19,11 +20,12 @@ initial begin
 	v = 0;
 		for (a = 0; a<16; a++) begin
 			for (b = 0; b<16; b++) begin
-			testvectors[v] = {a,b,(a+b)};
+            sum = a +b;
+			testvectors[v] = {a[3:0],b[3:0],sum[4:0]};
 			v++;		
 			end
 		end	
-		testvectors[v] = 12'bx;
+		testvectors[v] = 14'bx;
 end
 //// Generate clock.
 always
@@ -54,7 +56,7 @@ $display(" outputs = %b (%b expected)", led, ledexp);
 errors = errors + 1;
 end
 vectornum = vectornum + 1;
- if (testvectors[vectornum] === 13'bx) begin
+ if (testvectors[vectornum] === 14'bx) begin
 $display("%d tests completed with %d errors", vectornum, 
 errors);
 $stop;

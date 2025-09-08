@@ -7,6 +7,7 @@ module lab2_dg_disp(input logic [3:0] s1,
 logic int_osc;
 logic [14:0] counter;
 logic enabler;
+
 HSOSC hf_osc (.CLKHFPU(1'b1), .CLKHFEN(1'b1), .CLKHF(int_osc));
 
   
