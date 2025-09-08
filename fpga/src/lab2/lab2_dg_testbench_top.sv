@@ -1,3 +1,8 @@
+// Drake Gonzales
+// drgonzales@g.hmc.edu
+// Testbench for the top module. Hosts three test, each with different input switches
+// 9/4/25
+
 module lab2_dg_testbench_top();
 logic clk, reset;
 logic [3:0] s1;

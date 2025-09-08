@@ -1,3 +1,7 @@
+// Drake Gonzales
+// drgonzales@g.hmc.edu
+// Module for controlling the mux
+// 9/4/25
 module lab2_dg_mux(input logic [3:0] s1,
                     input logic [3:0] s2,
 					input logic enabler,

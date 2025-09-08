@@ -11,7 +11,7 @@ logic [31:0] vectornum, errors;
 logic [10:0] testvectors[10000:0];
 
 lab2_dg_seg u_segment(mux, seg);
-//// Generate clock.
+//// Generate clock for the segment
 always
 begin
 clk=1; #5; 

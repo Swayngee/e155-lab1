@@ -1,9 +1,9 @@
 // Drake Gonzales
 // drgonzales@g.hmc.edu
-// This module was made for the purpose of testing the LED module. This runs test vectors for Led[4:0].
+// This module was made for the purpose of testing the mux module. 
 // 9/4/25
 
-module lab2_dg_testbench_led();
+module lab2_dg_testbench_mux();
 logic clk, reset;
 logic [3:0] s1;
 logic [3:0] s2;
@@ -13,7 +13,7 @@ logic a,b;
 integer v;
 integer cycles;
 
-lab2_dg_led_adder u_led(s1, s2, led);
+lab2_dg_mux u_led(s1, s2, enabler, disp1, disp2, mux);
 
 initial begin
 	v = 0;

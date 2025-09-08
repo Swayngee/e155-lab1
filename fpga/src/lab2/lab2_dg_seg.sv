@@ -2,7 +2,7 @@
 // drgonzales@g.hmc.edu
 // This Module holds the combinational logic for the 7-segment display. Each hexadecimal will be displayed 
 // as a result of the output segment seg[6:0]
-// 9/4/25
+// 9/8/25
 
 module lab2_dg_seg(input logic [3:0] mux,
                    output logic [6:0] seg);
