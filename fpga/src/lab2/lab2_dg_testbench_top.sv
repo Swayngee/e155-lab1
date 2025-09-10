@@ -15,9 +15,10 @@ logic [31:0]  errors;
 // expected values
 logic [6:0] segexpected1, segexpected2;
 logic [4:0] sum;
+always_comb sum = s1 + s2;
 
 lab2_dg_top u_top(clk, s1, s2, seg, disp1, disp2, led);
-always_comb sum = s1 + s2;
+
 always begin
 clk = 1; #5; 
 clk = 0; #5;

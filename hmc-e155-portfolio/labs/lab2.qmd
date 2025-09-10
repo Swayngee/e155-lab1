@@ -21,22 +21,27 @@ The source code for this lab can be found in this [GitHub repo](https://github.c
 
 ### Equations
 
-To find the overall input current for the design the formula V-Vf-IR=0 was used. The knowns for this equation are Vin, which is 3.3V, Vf, which is around 1.8V, and the resistance used was 162Ω based on how bright the light was. Using this, the current comes out to 9.26mA, which is the upperbound of acceptable current going into FPGA pins. 
+To be able to solve for the correct clock cycles to correctly see both digits, first use a frequency in which the human cannot see flickering. This was guessed at around 240 Hz. Then do 1/F to get time = 0.00416 seconds.  Then divide this by 2 to get 1 toggle (on), which is 0.002083 seconds. Finally, to solve for amount of cycles the equation is N = t(toggle)* frequency(clk). Solving for this, N comes out to be 100,000 cycles. 
+Note** For testing of the HSOSC I used a frequency of 2.4 Mhz to be able to see the displays clearly toggling in the simulation. 
 
-Next, to be able to solve for the correct clock cycles to correctly see both digits, first use a frequency in which the human cannot see flickering. This was guessed at around 240 Hz. Then do 1/F to get time = 0.00416 seconds.  Then divide this by 2 to get 1 toggle (on), which is 0.002083 seconds. Finally, to solve for amount of cycles the equation is N = t(toggle)* frequency(clk). Solving for this, N comes out to be  100,000 cycles.  
+To find the current at the transistor we first find the Base-Emitter Saturation Voltage, which is ~ 0.90. We then use V=IR in which V = (3.3V - 0.90) and R = 1kΩ. We then divide 2.4V / 1kΩ to get current. Our current comes out to be 2.4mA which is an acceptable current and it worked when implemented.
+
+Thirdly, to find the overall input current for the 7-segment display, the formula V-Vd-IR=0 was used. The knowns for this equation are Vin, which is 3.3V, Vf, which is around 0.7V -0.25V (the Collector-Emmiter saturation), and the resistance used was 1kΩ based on how bright the light was. Using this, the current comes out to 2.35 mA, which is an acceptable current. 
+
+Lastly, for the leds we use current-limiting resistors. To solve for the current we use the same formula from above in which V-Vd-IR=0. The input current is 3.3V, Vd (drop) is around 2.2V. For the resistance, we chose a acceptable value such that our leds will still be bright for the lab. Thus we do 3.3V- 2.2V = 1.1V. Then we divide this by 330Ω to get 2.9mA, which is an acceptable current. 
 
 
 **Block Diagram**
 
-![Figure 1: This block diagram shows the connection between the FPGA, its inside hardware, and LEDs used in Lab 2.](../images/Block1.jpg)
+![Figure 1: This block diagram shows the connection between the FPGA, its inside hardware, and LEDs used in Lab 2.](../images/lab2_topdiagram.png)
 
 The block diagram above hosts the FPGA, a mux, a HSOSC module, and an output for the LED adder module. The input to this whole system is two input switches, s1 and s2, and three outputs, which were the display output, the binary 7-segment output, and the five Led adder output. 
 
 **Wiring Schematic**
 
-![Figure 2: This schematic shows the wiring and components between our dev board, the 7-segment display, and our Led's](../images/Schematic1.jpg)
+![Figure 2: This schematic shows the wiring and components between our dev board, the 7-segment display, and our Led's](../images/lab2_schematic_again.jpg)
 
-Figure 2 above pictures the electrical circuit related to the FPGA and the 7-segment display. It portrays both modules along with the pins used for each module, and the necessary switches, LED's, pull down resistors, and transistors needed. For each LED illuminated, a 1kΩ resistor was used to limit current from the FPGA. 
+Figure 2 above pictures the electrical circuit related to the FPGA and the 7-segment display. It portrays both modules along with the pins used for each module, and the necessary switches, LED's, pull down resistors, and transistors needed. 
 
 ## Results and Discussion
 
@@ -80,7 +85,11 @@ Above is the top module design for the lab. It hosts inputs of reset and switche
 
 ## Conclusion
 
-The design created was a successs. With each segment on the 7-segment display illuminating at the correct frequency, each led adding correctly, and each switch wired correctly. 
+The design created was a successs. With each segment on the 7-segment display illuminating at the correct frequency, each transistor operating as intended, each led adding correctly, and each switch wired correctly. This lab was completed in 8 hours. 
+
+## Suggestions
+
+When first creating the modular design, keep the HSOSC at the top module level such that overall module testing is easier. Use a clk to test the HSOSC for a set frequency to be able to see correct toggling. 
 
 
 ## Ai prototype
