@@ -43,39 +43,39 @@ reset=0;
 end
 //// Apply test vectors on rising edge of clk.
 always @(posedge clk) begin
-		if (~reset) begin
-			#1;
-			{s1, s2} = testvectors[vectornum];
-			vectornum = vectornum + 1;
-		end
+if (~reset) begin
+		#1;
+		{s1, s2} = testvectors[vectornum];
+		vectornum = vectornum + 1;
+	end
 end
 
 //// Check results on falling edge of clk.
 always @(negedge clk)
-	if (~reset) begin
-		if (disp1 == disp2) begin
-			$display("Error: inputs = %b", {s1,s2});
-			$display(" outputs = %d and %d are the same", disp1, disp2);
-			errors = errors + 1;
-		end
-		if (disp1 && ~disp2 && mux != s1) begin
-			$display("Error: inputs = %b", {s1,s2});
-			$display(" outputs = case (enabler) = 0 is wrong");
-			errors = errors + 1;
-		end
-		else if (~disp1 && disp2 && mux != s2) begin
-			$display("Error: inputs = %b", {s1,s2});
-			$display(" outputs = case (enabler) = 1 is wrong");
-			errors = errors + 1;
-		end
-		if (testvectors[vectornum] === 8'bx) begin
-		    $display("%d tests completed with %d errors", vectornum, errors);
-			if (errors >= 1) begin
-		    $	display("test failed");
-				end 
-			else
-				$display("test passed!"); 
-				$stop;
-		end
+if (~reset) begin
+	if (disp1 == disp2) begin
+		$display("Error: inputs = %b", {s1,s2});
+		$display(" outputs = %d and %d are the same", disp1, disp2);
+		errors = errors + 1;
+	end
+	if (disp1 && ~disp2 && mux != s1) begin
+		$display("Error: inputs = %b", {s1,s2});
+		$display(" outputs = case (enabler) = 0 is wrong");
+		errors = errors + 1;
+	end
+	else if (~disp1 && disp2 && mux != s2) begin
+		$display("Error: inputs = %b", {s1,s2});
+		$display(" outputs = case (enabler) = 1 is wrong");
+		errors = errors + 1;
+	end
+	if (testvectors[vectornum] === 8'bx) begin
+		$display("%d tests completed with %d errors", vectornum, errors);
+		if (errors >= 1) begin
+		$display("test failed");
+			end 
+		else
+			$display("test passed!"); 
+			$stop;
+	end
 	end
 endmodule

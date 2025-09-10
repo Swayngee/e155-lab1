@@ -25,7 +25,6 @@ initial begin
 			v++;		
 			end
 		end	
-		testvectors[v] = 14'bx;
 end
 //// Generate clock.
 always
