@@ -24,16 +24,16 @@ The source code for this lab can be found in this [GitHub repo](https://github.c
 To be able to solve for the correct clock cycles to correctly see both digits, first use a frequency in which the human cannot see flickering. This was guessed at around 240 Hz. Then do 1/F to get time = 0.00416 seconds.  Then divide this by 2 to get 1 toggle (on), which is 0.002083 seconds. Finally, to solve for amount of cycles the equation is N = t(toggle)* frequency(clk). Solving for this, N comes out to be 100,000 cycles. 
 Note** For testing of the HSOSC I used a frequency of 2.4 Mhz to be able to see the displays clearly toggling in the simulation. 
 
-To find the current at the transistor we first find the Base-Emitter Saturation Voltage, which is ~ 0.90. We then use V=IR in which V = (3.3V - 0.90) and R = 1kΩ. We then divide 2.4V / 1kΩ to get current. Our current comes out to be 2.4mA which is an acceptable current and it worked when implemented.
+To find the current at the transistor we first find the Base-Emitter Saturation Voltage, which is ~0.70. We then use V=IR in which V = (3.3V - 0.70V) and R = 1kΩ. We then divide 2.6V / 1kΩ to get current. Our current comes out to be 2.6mA which is an acceptable current and it worked when implemented. For reference, the I/O pins can take in a current of around 8mA. 
 
-Thirdly, to find the overall input current for the 7-segment display, the formula V-Vd-IR=0 was used. The knowns for this equation are Vin, which is 3.3V, Vf, which is around 0.7V -0.25V (the Collector-Emmiter saturation), and the resistance used was 1kΩ based on how bright the light was. Using this, the current comes out to 2.35 mA, which is an acceptable current. 
+Thirdly, to find the overall input current for the 7-segment display, the formula V-Vf-Vs-IR=0 was used. The knowns for this equation are Vin, which is 3.3V, Vf, which is around 1.9V, Vs which is 0.25 (the Collector-Emmiter saturation), and the resistance used was 1kΩ based on how bright the light was. Using this, the current comes out to 1.15 mA, which is an acceptable current. 
 
-Lastly, for the leds we use current-limiting resistors. To solve for the current we use the same formula from above in which V-Vd-IR=0. The input current is 3.3V, Vd (drop) is around 2.2V. For the resistance, we chose a acceptable value such that our leds will still be bright for the lab. Thus we do 3.3V- 2.2V = 1.1V. Then we divide this by 330Ω to get 2.9mA, which is an acceptable current. 
+Lastly, for the leds we use current-limiting resistors. To solve for the current we use the same formula from above in which V-Vd-IR=0. The input current is 3.3V, Vf is around 2.1V. The amps at this vf is around 4mA. This amounts to around 300Ω. For this resistor I chose 330Ω.
 
 
 **Block Diagram**
 
-![Figure 1: This block diagram shows the connection between the FPGA, its inside hardware, and LEDs used in Lab 2.](../images/lab2_topdiagram.png)
+![Figure 1: This block diagram shows the connection between the FPGA, its inside hardware, and LEDs used in Lab 2.](../images/lab2_top.jpg)
 
 The block diagram above hosts the FPGA, a mux, a HSOSC module, and an output for the LED adder module. The input to this whole system is two input switches, s1 and s2, and three outputs, which were the display output, the binary 7-segment output, and the five Led adder output. 
 
