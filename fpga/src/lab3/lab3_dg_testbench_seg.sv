@@ -3,14 +3,14 @@
 // This module was made to run testvectors through a simulation to test the 7-segment design. 
 // 9/4/25
 
-module lab2_dg_testbench_seg();
+module lab3_dg_testbench_seg();
 logic clk, reset;
-logic [7:0] keypress;
-logic [3:0] keys, keyexpected;
+logic [7:0] controller;
+logic [6:0] seg, segexpected;
 logic [31:0] vectornum, errors;
-logic [11:0] testvectors[10000:0];
+logic [14:0] testvectors[10000:0];
 
-lab3_dg_seg u_segment(keys, seg);
+lab3_dg_seg u_segment(controller, seg);
 //// Generate clock for the segment
 always
 begin
@@ -37,26 +37,26 @@ always @(posedge clk)
 begin
 
 #1;
-{keypress, keyexpected} = testvectors[vectornum];
+{controller, segexpected} = testvectors[vectornum];
 end
 //// Check results on falling edge of clk.
 always @(negedge clk)
 
 if (~reset) begin
 
-if (keys !== keyexpected ) begin
+if (seg !== segexpected ) begin
 
-$display("Error: inputs = %b", {keypress});
+$display("Error: inputs = %b", {controller});
 
-$display(" outputs = %b (%b expected)", keys, 
-keyexpected);
+$display(" outputs = %b (%b expected)", seg, 
+segexpected);
 //// Increment the count of errors.
 errors = errors + 1;
 end
 //// In any event, increment the count of vectors.
 vectornum = vectornum + 1;
 
- if (testvectors[vectornum] === 12'bx) begin
+ if (testvectors[vectornum] === 15'bx) begin
 
 $display("%d tests completed with %d errors", vectornum, 
 errors);
