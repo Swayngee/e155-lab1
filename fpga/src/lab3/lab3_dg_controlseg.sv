@@ -11,9 +11,9 @@ logic [7:0] current;
 logic [7:0] past;
 
 always_ff @(posedge int_osc or posedge reset) begin
-    if (reset) begin
-        current <= 8'b0;
-        past <= 8'b0;
+    if (~reset) begin
+        current <= 8'd0;
+        past <= 8'd0;
     end 
     else if (alarm == 1'b1) begin
         past <= current;
@@ -24,7 +24,7 @@ end
 always_comb begin
     disp1= 1'b0;
     disp2 = 1'b0;
-    controller = 8'b0;
+    controller = 8'd0;
     if (enabler == 1'b0) begin
         disp1 = 1'b1;      
         controller = past;   

@@ -4,7 +4,7 @@
 // as a result of the output segment seg[6:0]
 // 9/8/25
 
-module lab3_dg_seg(input logic [3:0] controller,
+module lab3_dg_seg(input logic [7:0] controller,
                    output logic [6:0] seg);
     always_comb begin
         case (controller)

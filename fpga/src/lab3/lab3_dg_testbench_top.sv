@@ -14,7 +14,7 @@ logic [31:0]  errors;
 // expected values
 logic [6:0] segexpected1, segexpected2;
 
-lab2_dg_top u_top(int_osc, reset, rows, cols, seg, disp1, disp2);
+lab3_dg_top u_top(int_osc, reset, rows, cols, seg, disp1, disp2);
 
 always begin
 int_osc = 1; #5; 

@@ -73,6 +73,7 @@ for (a = 0; a < 4; a++) begin
          repeat (2) @(posedge int_osc);
         end
     $stop;
+	
 end
 
 endmodule
