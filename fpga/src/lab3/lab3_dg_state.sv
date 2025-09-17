@@ -42,19 +42,19 @@ end
 
 always_ff @(posedge int_osc) begin
     if (~reset) begin
-        srows    = 4'b1111;
-        counter1 = 20'd0;
+        srows    <= 4'b1111;
+        counter1 <= 20'd0;
     end
     else if (state == waiter) begin
 		if (counter1 == 20'd480000) begin
-            srows = sync;  
-			keypress = {holdcols, srows};			
+            srows <= sync;  
+			keypress <= {holdcols, srows};			
         end
         else begin
-            counter1 = counter1 + 20'd1;
+            counter1 <= counter1 + 20'd1;
         end
     end
-	else counter1 = 20'd0;
+	else counter1 <= 20'd0;
 end
 
 // next state logic
@@ -112,6 +112,7 @@ end
 endcase
 end
 endmodule
+
 
 
 
