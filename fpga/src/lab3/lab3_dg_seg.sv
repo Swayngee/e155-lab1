@@ -26,5 +26,6 @@ module lab3_dg_seg(input logic [7:0] controller,
             8'b01111110: seg = 7'b0001110;
             default:     seg = 7'b1111111;
         endcase
+		
     end 
 endmodule

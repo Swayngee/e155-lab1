@@ -8,74 +8,86 @@ module lab3_dg_state(input logic int_osc,
             output logic alarm);
 
 typedef enum logic [3:0] {idle, waiter, check, drive, last} statetype;
-
+logic [3:0] holdcols;
 statetype state, nextstate; 
 integer v;
-logic [4:0] srows;
-logic [3:0] rowpress;
+logic [3:0] srows;
 logic [7:0] prekey; 
-logic [7:0] keypress;
-logic [20:0] counter;
-logic alarm = 1'b0;
+logic [19:0] counter1;
 
-always_ff @(posedge int_osc or posedge reset) begin
-    if (reset) begin
-	    state <= idle;
-        v <= 0;
-    end 
-    else if (state == idle) begin 
-        if (v == 4)
-        v <= 0;
-        else 
-        v <= v + 1;
-    end
-    else
-        state <= nextstate;
+always_ff @(posedge int_osc) begin
+	if (~reset) begin
+		cols <= 4'b1111;
+		rowpress <=4'b1111;
+		state <= idle;
+		v <= 0;
+	end 
+    else begin
+		cols <= holdcols;
+		state <= nextstate;
+		if (state == idle) begin
+			if (rows != 4'b1111) begin
+				rowpress <= rows;
+			end
+			else rowpress <= 4'b1111;
+			if (v == 3) begin
+				v <= 0;
+			end
+			else v <= v + 1;
+				 
+
+		end
+	end
 end
 
-
-always_ff @(posedge int_osc or posedge reset) begin
-    if (reset) begin
-        srows <= 4'b1111;
-        counter <= 20'd0;
+always_ff @(posedge int_osc) begin
+    if (~reset) begin
+        srows    = 4'b1111;
+        counter1 = 20'd0;
     end
     else if (state == waiter) begin
-        if (sync == srows) begin
-            counter <= 0;
+		if (counter1 == 20'd10) begin
+            srows = sync;  
+			keypress = {holdcols, srows};			
         end
         else begin
-            counter <= counter + 20'd1;
-            if (counter >= 10) begin
-                srows <= sync;
-                counter <= 20'd0;
-            end
+            counter1 = counter1 + 20'd1;
         end
     end
+	else counter1 = 20'd0;
 end
 
+// next state logic
 always_comb begin
-nextstate = state;
-case(state)
-    idle: begin
-        alarm = 1'b0;
-        cols = 4'b1111;
-        cols[v] = 1'b0;
-        if (rows != 4'b1111) begin
-            rowpress = ~rows;         
-            prekey   = {cols, rowpress};
-                nextstate = waiter;
-            end
-            else
-                nextstate = idle;
-        end 
+    nextstate = state;
+    alarm     = 1'b0;
+    holdcols = cols;
+case (state)
+idle: begin
+holdcols = 4'b1111;
+holdcols[v] = 1'b0; 
+//if (v == 3) begin
+	if (rows != 4'b1111) begin    
+		prekey    = {holdcols, rowpress};
+		nextstate = waiter;
+	end
+//end
+else nextstate = idle; 
+end
 
-    waiter: begin
-    keypress = {cols, srows};
-    nextstate = check;
 
+waiter: begin
+if (counter1 == 20'd480000) begin
+//keypress = {cols, srows};
+nextstate = check;
+end
+else begin
+nextstate = waiter;
+ end
     end
     check: begin
-    if (keypress != prekey) begin 
+    if (srows != rowpress) begin
+		alarm = 1'b0;
         nextstate = idle;
     end 
     else begin
@@ -86,11 +98,14 @@ case(state)
     drive: begin
         nextstate = last; 
     end
-    last: begin
-        if (keypress == prekey)
-            nextstate = last;
-        else nextstate = idle; 
-    end
+last: begin
+    if (rows == 4'b1111)
+        nextstate = idle;
+    else if (rows != rowpress)  // new row detected
+        nextstate = idle;
+    else
+        nextstate = last;
+end
 endcase
 end
 endmodule

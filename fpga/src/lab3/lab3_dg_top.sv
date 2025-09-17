@@ -11,13 +11,11 @@ module lab3_dg_top(input logic reset,
 
 logic int_osc;
 logic [20:0] counter;
-logic [3:0] keys;
 logic [7:0] keypress;
 logic enabler = 1'b0; 
 logic [3:0] rowpress, sync;   
 logic alarm;                 
 logic [7:0] controller;       
-logic [3:0] n1;
 
 
 HSOSC hf_osc (.CLKHFPU(1'b1), .CLKHFEN(1'b1), .CLKHF(int_osc));
@@ -27,7 +25,7 @@ always_ff @(posedge int_osc) begin
 if (~reset) begin
 	counter <= 0;
 end else begin
-	if (counter == 21'd10) begin
+	if (counter == 21'd100000) begin
     counter <= 0;
     enabler <= ~enabler;
 	end

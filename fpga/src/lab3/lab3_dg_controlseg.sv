@@ -10,7 +10,7 @@ module lab3_dg_controlseg(input  logic  int_osc,
 logic [7:0] current;
 logic [7:0] past;
 
-always_ff @(posedge int_osc or posedge reset) begin
+always_ff @(posedge int_osc) begin
     if (~reset) begin
         current <= 8'd0;
         past <= 8'd0;
@@ -26,9 +26,11 @@ always_comb begin
     disp2 = 1'b0;
     controller = 8'd0;
     if (enabler == 1'b0) begin
-        disp1 = 1'b1;      
+        disp1 = 1'b1;    
+		disp2 = 1'b0;
         controller = past;   
     end else begin
+		disp1 = 1'b0;
         disp2  = 1'b1;      
         controller = current;
         end
