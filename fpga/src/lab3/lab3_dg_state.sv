@@ -46,7 +46,7 @@ always_ff @(posedge int_osc) begin
         counter1 = 20'd0;
     end
     else if (state == waiter) begin
-		if (counter1 == 20'd10) begin
+		if (counter1 == 20'd4800000) begin
             srows = sync;  
 			keypress = {holdcols, srows};			
         end
@@ -105,6 +105,7 @@ last: begin
         nextstate = idle;
     else
         nextstate = last;
+
 end
 endcase
 end
