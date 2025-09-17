@@ -61,7 +61,6 @@ end
 always_comb begin
     nextstate = state;
     alarm     = 1'b0;
-    holdcols = cols;
 case (state)
 idle: begin
 holdcols = 4'b1111;
@@ -101,7 +100,7 @@ nextstate = waiter;
 last: begin
     if (rows == 4'b1111)
         nextstate = idle;
-    else if (rows != rowpress)  // new row detected
+    else if (rows != rowpress)  
         nextstate = idle;
     else
         nextstate = last;
@@ -110,3 +109,4 @@ end
 endcase
 end
 endmodule
+
