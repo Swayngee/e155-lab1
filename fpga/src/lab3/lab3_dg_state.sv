@@ -95,6 +95,7 @@ nextstate = waiter;
     end 
     end
     drive: begin
+		alarm = 1'b1;
         nextstate = last; 
     end
 last: begin
@@ -102,13 +103,15 @@ last: begin
         nextstate = idle;
     else if (rows != rowpress)  
         nextstate = idle;
-    else
+    else begin
 		alarm = 1'b1; 
         nextstate = last;
+	end
 
 end
 endcase
 end
 endmodule
+
 
 
