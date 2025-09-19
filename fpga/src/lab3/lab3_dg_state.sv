@@ -4,115 +4,163 @@ module lab3_dg_state(input logic int_osc,
             input logic [3:0] sync,
             output logic [3:0] cols, 
             output logic [7:0] keypress,
-            output logic [3:0] rowpress,
             output logic alarm);
 
 typedef enum logic [3:0] {idle, waiter, check, drive, last} statetype;
-logic [3:0] holdcols;
+//logic [3:0] holdcols;
 statetype state, nextstate; 
-integer v;
-logic [3:0] srows;
-logic [7:0] prekey; 
+logic [3:0] v;
+//logic [3:0] srows;
+//logic [7:0] prekey; 
 logic [19:0] counter1;
 
-always_ff @(posedge int_osc) begin
-	if (~reset) begin
-		cols <= 4'b1111;
-		rowpress <=4'b1111;
-		state <= idle;
-		v <= 0;
-	end 
-    else begin
-		cols <= holdcols;
-		state <= nextstate;
-		if (state == idle) begin
-			if (rows != 4'b1111) begin
-				rowpress <= rows;
+
+
+logic counter1_enable, counter_done, v_enable, pressed, all_on;
+
+	// Assigned vars
+	assign pressed = (rows != 4'b1111);
+	assign keypress = {cols, rows};
+	
+	// Counter
+	always_ff @(posedge int_osc, negedge reset) begin
+		if (reset == 0) begin
+			counter1 <= 0;
+			counter_done <= 0;
+		end
+		else if (counter1_enable) begin
+			if (counter1 >= 20'd480000)begin
+				counter1 <= 0;
+				counter_done <= 1;
 			end
-			else rowpress <= 4'b1111;
-			if (v == 3) begin
-				v <= 0;
+			else begin
+				counter1 <= counter1 + 1;
+				counter_done <= 0;
 			end
-			else v <= v + 1;
-				 
+		end
+		else begin
+			counter1 <= 0;
+			counter_done <= 0;
 
 		end
-	end
-end
-
-always_ff @(posedge int_osc) begin
-    if (~reset) begin
-        srows    <= 4'b1111;
-        counter1 <= 20'd0;
-    end
-    else if (state == waiter) begin
-		if (counter1 == 20'd480000) begin
-            srows <= sync;  
-			keypress <= {holdcols, srows};			
-        end
-        else begin
-            counter1 <= counter1 + 20'd1;
-        end
-    end
-	else counter1 <= 20'd0;
-end
-
-// next state logic
-always_comb begin
-    nextstate = state;
-    alarm     = 1'b0;
-case (state)
-idle: begin
-holdcols = 4'b1111;
-holdcols[v] = 1'b0; 
-//if (v == 3) begin
-	if (rows != 4'b1111) begin    
-		prekey    = {holdcols, rowpress};
-		nextstate = waiter;
-	end
-//end
-else nextstate = idle; 
-end
-
-
-waiter: begin
-if (counter1 == 20'd480000) begin
-//keypress = {cols, srows};
-nextstate = check;
-end
-else begin
-nextstate = waiter;
- end
-    end
-    check: begin
-    if (srows != rowpress) begin
-		alarm = 1'b0;
-        nextstate = idle;
-    end 
-    else begin
-        alarm = 1'b1;  
-        nextstate = drive; 
-    end 
-    end
-    drive: begin
-		alarm = 1'b1;
-        nextstate = last; 
-    end
-last: begin
-    if (rows == 4'b1111)
-        nextstate = idle;
-    else if (rows != rowpress)  
-        nextstate = idle;
-    else begin
-		alarm = 1'b1; 
-        nextstate = last;
+	
 	end
 
-end
-endcase
-end
+	// State ff
+	always_ff @(posedge int_osc, negedge reset) begin
+		if(reset == 0) begin
+			state <= idle;
+		end
+		else begin
+			state <= nextstate;
+		end
+	end
+
+	// Next state Logic
+	always_comb begin
+		case(state)
+			idle: begin
+				if (pressed) nextstate <= waiter;
+				else nextstate <= idle;	
+			end
+			waiter: begin
+				if (counter_done) nextstate <= check;
+				else nextstate <= waiter;
+			end
+			check: begin
+				if (pressed) nextstate <= drive;
+				else nextstate <= idle;
+			end
+			drive: begin
+				nextstate <= last;
+			end
+			last: begin
+				if (pressed) nextstate <= last;
+				else nextstate <= idle;				
+			end
+			default: nextstate <= idle;
+		endcase
+	end
+
+	// Output Logic	
+	always_comb begin
+		case(state)
+			idle: begin
+				v_enable <= 1;
+				alarm <= 0;
+				counter1_enable <= 0;
+				all_on <= 0;
+			end
+			waiter: begin
+				v_enable <= 0;
+				alarm <= 0;
+				counter1_enable <= 1;
+				all_on <= 0;
+			end
+			check: begin
+				v_enable <= 0;
+				alarm <= 0;
+				counter1_enable <= 0;
+				all_on <= 0;
+			end
+			drive: begin
+				v_enable <= 0;
+				alarm <= 1;
+				counter1_enable <= 0;
+				all_on <= 0;
+			end
+			last: begin
+				v_enable <= 0;
+				alarm <= 0;
+				counter1_enable <= 0;
+				all_on <= 1;
+			end
+			default: begin
+				v_enable <= 1;
+				alarm <= 0;
+				counter1_enable <= 0;
+				all_on <= 0;
+			end
+		endcase
+	end
+
+// cols output logic
+	always_ff @(posedge int_osc) begin
+		if (reset == 0) begin
+			v <= 0;
+		end
+		else if(v_enable) begin
+			v <= v + 4'b1;
+		end
+		else v <= v;
+	end
+
+	always_comb begin
+		if ( all_on ) begin
+			cols = 4'b0000;
+		end
+		else begin
+			case(v)
+				0: cols = 4'b1110;
+				1: cols = 4'b1110;
+				2: cols = 4'b1110;
+				3: cols = 4'b1110;
+				4: cols = 4'b1101;
+				5: cols = 4'b1101;
+				6: cols = 4'b1101;
+				7: cols = 4'b1101;
+				8: cols = 4'b1011;
+				9: cols = 4'b1011;
+				10: cols = 4'b1011;
+				11: cols = 4'b1011;
+				12: cols = 4'b0111;
+				13: cols = 4'b0111;
+				14: cols = 4'b0111;
+				15: cols = 4'b0111;
+			endcase
+		end
+	end
+
 endmodule
-
-
 
 

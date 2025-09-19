@@ -25,7 +25,7 @@ always_comb begin
     disp1= 1'b0;
     disp2 = 1'b0;
     controller = 8'd0;
-    if (enabler == 1'b0) begin
+    if (enabler == 1'b1) begin
         disp1 = 1'b1;    
 		disp2 = 1'b0;
         controller = past;   

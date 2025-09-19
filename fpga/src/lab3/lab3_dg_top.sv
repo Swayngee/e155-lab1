@@ -13,7 +13,7 @@ logic int_osc;
 logic [20:0] counter;
 logic [7:0] keypress;
 logic enabler = 1'b0; 
-logic [3:0] rowpress, sync;   
+logic [3:0] sync;   
 logic alarm;                 
 logic [7:0] controller;       
 
@@ -33,11 +33,11 @@ end else begin
 end
 end
 
-lab3_dg_state u_state(int_osc, reset, rows, sync, cols, keypress, rowpress, alarm);
+lab3_dg_state u_state(int_osc, reset, rows, sync, cols, keypress, alarm);
 
 lab3_dg_seg u_seg(controller, seg);
 
-lab3_dg_sync u_sync(int_osc, reset, rowpress, sync);
+lab3_dg_sync u_sync(int_osc, reset, rows, sync);
 
 lab3_dg_controlseg u_control(int_osc, reset, enabler, alarm, keypress, disp1, disp2, controller);
 
