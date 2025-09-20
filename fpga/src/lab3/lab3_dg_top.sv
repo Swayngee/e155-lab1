@@ -1,7 +1,7 @@
 // Drake Gonzales
 // drgonzales@g.hmc.edu
 // Module for controling the sub-modules. Also initializing the HSOSC
-// 9/4/25
+// 9/20/25
 module lab3_dg_top(input logic reset, 
 					input logic [3:0] rows,
                     output logic [3:0] cols, 
