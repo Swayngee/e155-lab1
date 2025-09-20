@@ -1,7 +1,7 @@
 // Drake Gonzales
 // drgonzales@g.hmc.edu
 // Testbench for the top module. Hosts three test, each with different input switches
-// 9/4/25
+// 9/20/25
 `timescale 1ns/1ps
 module lab3_dg_testbench_top();
 logic reset;
@@ -103,6 +103,7 @@ reset  = 0;
     // check left display
     if (disp1 && seg != segexpected1) begin
         errors= errors +1;
+
 		$display("Test31 displays failed");
     end
     // check right display
