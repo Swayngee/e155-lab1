@@ -10,8 +10,8 @@ logic [3:0] n1;
 
 always_ff @(posedge int_osc) begin
     if (~reset) begin
-        n1   <= 4'b0000;
-        sync <= 4'b0000;
+        n1   <= 4'b1111;
+        sync <= 4'b1111;
     end else begin
         n1 <= rows;
         sync <= n1;
