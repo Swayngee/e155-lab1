@@ -1,7 +1,7 @@
 // Drake Gonzales
 // drgonzales@g.hmc.edu
-// This module was made for the purpose of testing the mux on our schematic
-// 9/4/25
+// This module was made for the purpose of testing our state machine by throwing in input rows
+// 9/20/25
 
 module lab3_dg_testbench_state();
 logic int_osc, reset;
@@ -75,6 +75,7 @@ for (a = 0; a < 4; a++) begin
         end
     $stop;
 	
+
 	
 end
 
