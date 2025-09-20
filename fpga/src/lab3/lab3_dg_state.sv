@@ -5,7 +5,6 @@
 
 module lab3_dg_state(input logic int_osc,
             input logic reset,
-            input logic [3:0] rows,
             input logic [3:0] sync,
             output logic [3:0] cols, 
             output logic [7:0] keypress,
@@ -24,8 +23,8 @@ logic [19:0] counter1;
 logic counter1_enable, counter_done, v_enable, pressed, all_on;
 
 	// Assigned vars
-	assign pressed = (rows != 4'b1111);
-	assign keypress = {cols, rows};
+	assign pressed = (sync != 4'b1111);
+	assign keypress = {cols, sync};
 	
 	// Counter
 	always_ff @(posedge int_osc, negedge reset) begin
@@ -167,6 +166,7 @@ logic counter1_enable, counter_done, v_enable, pressed, all_on;
 	end
 
 endmodule
+
 
 
 
