@@ -1,7 +1,7 @@
 // Drake Gonzales
 // drgonzales@g.hmc.edu
-// This module was made for the purpose of testing the mux on our schematic
-// 9/4/25
+// This module was made for the purpose of testing our synchronizer
+// 9/20/25
 
 module lab3_dg_testbench_sync();
 logic int_osc, reset;
