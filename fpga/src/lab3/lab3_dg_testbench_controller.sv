@@ -1,6 +1,6 @@
 // Drake Gonzales
 // drgonzales@g.hmc.edu
-// This module was made for the purpose of testing the mux on our schematic
+// This module was made for the purpose of testing the segment output
 // 9/15/25
 
 module lab3_dg_testbench_controller();
@@ -54,6 +54,7 @@ always_comb begin
     end else begin
         expcontroller = exppast;
     end
+
 end
 always @(negedge int_osc)
 if (!reset) begin
