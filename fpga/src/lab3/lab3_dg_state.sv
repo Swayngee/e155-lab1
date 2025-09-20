@@ -1,3 +1,8 @@
+// Drake Gonzales
+// drgonzales@g.hmc.edu
+// This Module holds the state machine along with eahc output
+// 9/20/25
+
 module lab3_dg_state(input logic int_osc,
             input logic reset,
             input logic [3:0] rows,
@@ -162,5 +167,6 @@ logic counter1_enable, counter_done, v_enable, pressed, all_on;
 	end
 
 endmodule
+
 
 
