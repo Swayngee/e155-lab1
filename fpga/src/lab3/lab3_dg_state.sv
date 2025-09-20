@@ -130,7 +130,7 @@ logic counter1_enable, counter_done, v_enable, pressed, all_on;
 	end
 
 // cols output logic
-	always_ff @(posedge int_osc) begin
+	always_ff @(posedge int_osc, or negedge reset) begin
 		if (reset == 0) begin
 			v <= 0;
 		end
@@ -167,6 +167,7 @@ logic counter1_enable, counter_done, v_enable, pressed, all_on;
 	end
 
 endmodule
+
 
 
 
