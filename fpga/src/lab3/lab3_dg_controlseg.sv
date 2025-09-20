@@ -1,3 +1,8 @@
+// Drake Gonzales
+// drgonzales@g.hmc.edu
+// This Module holds the combinational logic for the 7-segment display. Each hexadecimal will be displayed 
+// 9/20/25
+
 module lab3_dg_controlseg(input  logic  int_osc,
                             input logic reset,
                             input logic enabler,   
@@ -30,6 +35,7 @@ always_comb begin
 		disp2 = 1'b0;
         controller = past;   
     end else begin
+
 		disp1 = 1'b0;
         disp2  = 1'b1;      
         controller = current;
