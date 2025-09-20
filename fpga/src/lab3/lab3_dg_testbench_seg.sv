@@ -1,7 +1,7 @@
 // Drake Gonzales
 // drgonzales@g.hmc.edu
 // This module was made to run testvectors through a simulation to test the 7-segment design. 
-// 9/4/25
+// 9/20/25
 
 module lab3_dg_testbench_seg();
 logic clk, reset;
