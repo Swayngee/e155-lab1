@@ -3,7 +3,7 @@
 // This Module holds synchronzer for my fsm
 // 9/20/25
 module lab3_dg_sync(input logic int_osc,
-					input logic reset
+					input logic reset,
                     input logic [3:0] rows,
                     output logic [3:0] sync);
 logic [3:0] n1;

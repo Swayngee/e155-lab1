@@ -33,7 +33,7 @@ end else begin
 end
 end
 
-	lab3_dg_state u_state(int_osc, reset, sync, cols, keypress, alarm);
+lab3_dg_state u_state(int_osc, reset, sync, cols, keypress, alarm);
 
 lab3_dg_seg u_seg(controller, seg);
 
