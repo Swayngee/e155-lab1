@@ -6,7 +6,7 @@
 
 module lab3_dg_seg(input logic [7:0] controller,
                    output logic [6:0] seg);
-    always_comb begin
+always_comb begin
 case (controller)
             8'b11011110: seg = 7'b1000000;
             8'b11100111: seg = 7'b1001111;
@@ -24,8 +24,7 @@ case (controller)
             8'b01111011: seg = 7'b0100001;
             8'b01111101: seg = 7'b0000110;
             8'b01111110: seg = 7'b0001110;
-            default:     seg = 7'b1000000;
+            default:     seg = 7'b0000000;
         endcase
-		
     end 
 endmodule

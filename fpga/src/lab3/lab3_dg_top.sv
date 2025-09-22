@@ -35,11 +35,11 @@ end
 
 lab3_dg_state u_state(int_osc, reset, sync, cols, keypress, alarm);
 
-lab3_dg_seg u_seg(controller, seg);
+lab3_dg_seg u_seg(controller,seg);
 
 lab3_dg_sync u_sync(int_osc, reset, rows, sync);
 
-lab3_dg_controlseg u_control(int_osc, reset, enabler, alarm, keypress, disp1, disp2, controller);
+lab3_dg_controlseg u_control(int_osc, reset, enabler, alarm, keypress, disp1,disp2, controller);
 
 
 endmodule

@@ -15,8 +15,8 @@ module lab3_dg_controlseg(input  logic  int_osc,
 logic [7:0] current;
 logic [7:0] past;
 
-always_ff @(posedge int_osc) begin
-    if (~reset) begin
+always_ff @(posedge int_osc, negedge reset) begin
+    if (reset == 0) begin
         current <= 8'd0;
         past <= 8'd0;
     end 

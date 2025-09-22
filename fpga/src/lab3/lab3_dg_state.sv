@@ -17,7 +17,7 @@ logic [3:0] v;
 //logic [3:0] srows;
 //logic [7:0] prekey;
 logic [19:0] counter1;
-
+logic [7:0] keylatch; 
 
 
 logic counter1_enable, counter_done, v_enable, pressed, all_on;
@@ -33,7 +33,7 @@ counter1 <= 0;
 counter_done <= 0;
 end
 else if (counter1_enable) begin
-if (counter1 >= 20'd48000)begin
+if (counter1 >= 20'd50000)begin
 counter1 <= 0;
 counter_done <= 1;
 end
@@ -47,8 +47,9 @@ counter1 <= 0;
 counter_done <= 0;
 
 end
-
 end
+
+
 
 // State ff
 always_ff @(posedge int_osc, negedge reset) begin
@@ -63,7 +64,7 @@ end
 // Next state Logic
 always_comb begin
 case(state)
-idle: begin
+idle: begin 
 if (pressed) nextstate <= waiter;
 else nextstate <= idle;
 end
@@ -72,19 +73,41 @@ if (counter_done) nextstate <= check;
 else nextstate <= waiter;
 end
 check: begin
-if (pressed) nextstate <= drive;
+if (pressed) begin 
+nextstate <= drive;
+end
 else nextstate <= idle;
 end
 drive: begin
 nextstate <= last;
 end
 last: begin
-if (pressed) nextstate <= last;
-else nextstate <= idle;
+if (!pressed) 
+    nextstate <= waiter;
+else if (sync != keylatch[3:0])  
+    nextstate <= waiter;  
+else
+    nextstate <= last;
 end
+
 default: nextstate <= idle;
 endcase
 end
+
+always_ff @(posedge int_osc, negedge reset) begin
+    if (reset == 0) begin
+        keylatch <= 8'b0;
+    end
+    else if (state == check && pressed) begin
+        keylatch <= keypress;
+		end
+	else if (state == idle) begin
+		keylatch <= 8'b0; 
+		end
+end
+
+
+
 
 // Output Logic
 always_comb begin
@@ -128,6 +151,8 @@ end
 endcase
 end
 
+
+
 // cols output logic
 always_ff @(posedge int_osc, negedge reset) begin
 if (reset == 0) begin
@@ -165,7 +190,5 @@ endcase
 end
 end
 
-endmodule 
-
-
+endmodule
 
