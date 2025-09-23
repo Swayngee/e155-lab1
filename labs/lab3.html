@@ -168,6 +168,7 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#ai-prototype" id="toc-ai-prototype" class="nav-link" data-scroll-target="#ai-prototype">Ai prototype</a>
   <ul class="collapse">
   <li><a href="#below-are-the-prompts-for-the-ai-prototype" id="toc-below-are-the-prompts-for-the-ai-prototype" class="nav-link" data-scroll-target="#below-are-the-prompts-for-the-ai-prototype">Below are the prompts for the AI prototype</a></li>
+  <li><a href="#response" id="toc-response" class="nav-link" data-scroll-target="#response">Response</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -227,7 +228,8 @@ ul.task-list li input[type="checkbox"] {
 </figure>
 </div>
 <p>The block diagram above portrays the modules used for this lab design. It includes the top module, the state machine, the controller, decoder, synchronizer, and the inputs and outputs of each module.</p>
-<p><strong>Registers</strong> Below are the registers for each coresponding module for the block diagram. Each register contains a clock and a reset input. <img src="../images/contsegreg.jpg" class="img-fluid" alt="Figure 2: This block diagram shows the registers for the controlseg module."></p>
+<p><strong>Registers</strong></p>
+<p>Below are the registers for each coresponding module for the block diagram. Each register contains a clock and a reset input. <img src="../images/contsegreg.jpg" class="img-fluid" alt="Figure 2: This block diagram shows the registers for the controlseg module."></p>
 <p>Figure 2 shows the registers used for our controlseg module.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -288,9 +290,21 @@ ul.task-list li input[type="checkbox"] {
 </figure>
 </div>
 <p>Figure 8 shows the simulation for the schronizer design. This design was simple, and it just cheked that after two clock cycles, the output got the same input.</p>
-<p><strong>Controller Simulation</strong> <img src="../images/lab2_muxwaveform.png" class="img-fluid" alt="Figure 9: Above pictures the waveforms corresponding to the controller"></p>
+<p><strong>Controller Simulation</strong></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/lab2_muxwaveform.png" class="img-fluid figure-img"></p>
+<figcaption>Figure 9: Above pictures the waveforms corresponding to the controller</figcaption>
+</figure>
+</div>
 <p>Figure 9 shows the controller simulation. It hosts the same idea as the schronizer, however the design had to take account for the mux, and ifferent enablers, which is seen above.</p>
-<p><strong>State machine Simulation</strong> <img src="../images/lab3statemachinetestbench.png" class="img-fluid" alt="Figure 10: Above pictures the waveforms corresponding to the FSM"></p>
+<p><strong>State machine Simulation</strong></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/lab3statemachinetestbench.png" class="img-fluid figure-img"></p>
+<figcaption>Figure 10: Above pictures the waveforms corresponding to the FSM</figcaption>
+</figure>
+</div>
 <p>Above shows the overall state machine, and its inputs and outputs. The design of the testbench implemented hosted just a test of different inputs, and instead of a typical testbench throwing back errors, waveforms can be visually seen to check whether the deisng implemnted worked.</p>
 <p><strong>Top Module Simulation</strong></p>
 <div class="quarto-figure quarto-figure-center">
@@ -335,7 +349,10 @@ ul.task-list li input[type="checkbox"] {
 </ol>
 <p>Write a top‑level SystemVerilog module that instantiates the scanner and one‑shot modules, shifts the last two keys (older ← most recent; most recent ← new), and drives a multiplexed two‑digit seven‑segment display. Requirements:</p>
 <p>Update the displayed digits only when a new key is registered. Ensure equal apparent brightness and no visible flicker. Keep all logic synthesizable and synchronous; use idiomatic SystemVerilog constructs. Provide any small clock‑enable or divider logic you need. You can also assume that a sevenSegment module exists that takes a 4 bit input and outputs the 7 segments.</p>
-<p><strong>Response</strong> The monolithic prompt in my opinion performed better than the decomposed prompt. It was simpilier and it showed no synthesized errors. The design was easy to follow sometimes, but other times it kind of just threw code together to make it “simplier” but in a sense it made it more complicated. One such example of this is below:</p>
+</section>
+<section id="response" class="level3">
+<h3 class="anchored" data-anchor-id="response">Response</h3>
+<p>The monolithic prompt in my opinion performed better than the decomposed prompt. It was simpilier and it showed no synthesized errors. The design was easy to follow sometimes, but other times it kind of just threw code together to make it “simplier” but in a sense it made it more complicated. One such example of this is below:</p>
 <pre><code>                detected_key = get_key_code(2'b00, row_in[1:0] == 2'b11 ? (row_in[3:2] == 2'b11 ? 2'b11 : 2'b10) :
                                                                           (row_in[1] ? 2'b01 : 2'b00));</code></pre>
 <p>The decomposed prompt had a better flow in a sense that the modules were seperated. It only fell short because it initiated the wrong clock when running the last prompt.</p>
