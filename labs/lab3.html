@@ -219,7 +219,7 @@ ul.task-list li input[type="checkbox"] {
 <p>Note* The first two equations below were copied from lab 2</p>
 <p>To be able to solve for the correct clock cycles to correctly see both digits, we repeat the formula solved in lab 2. First use a frequency in which the human cannot see flickering. This was guessed at around 240 Hz. Then do 1/F to get time = 0.00416 seconds. Then divide this by 2 to get 1 toggle (on), which is 0.002083 seconds. Finally, to solve for amount of cycles the equation is N = t(toggle)* frequency(clk). Solving for this, N comes out to be 100,000 cycles.</p>
 <p>Thirdly, to find the overall input current for the 7-segment display, the formula V-Vf-Vs-IR=0 was used. The knowns for this equation are Vin, which is 3.3V, Vf, which is around 1.9V, Vs which is 0.25 (the Collector-Emmiter saturation), and the resistance used was 1kΩ based on how bright the light was. Using this, the current comes out to 1.15 mA, which is an acceptable current.</p>
-<p>Lastly for the keypad [new], the internal resistors of the FPGA were used, setting the restsiance to 10kΩ.</p>
+<p>Lastly for the keypad [new], the internal resistors of the FPGA were used, setting the resistance to 10kΩ.</p>
 <p><strong>Block Diagram</strong></p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -229,7 +229,7 @@ ul.task-list li input[type="checkbox"] {
 </div>
 <p>The block diagram above portrays the modules used for this lab design. It includes the top module, the state machine, the controller, decoder, synchronizer, and the inputs and outputs of each module.</p>
 <p><strong>Registers</strong></p>
-<p>Below are the registers for each coresponding module for the block diagram. Each register contains a clock and a reset input. <img src="../images/contsegreg.jpg" class="img-fluid" alt="Figure 2: This block diagram shows the registers for the controlseg module."></p>
+<p>Below are the registers for each coresponding module for the block diagram. Each register contains a clock and a reset input. <img src="../images/contseg.jpg" class="img-fluid" alt="Figure 2: This block diagram shows the registers for the controlseg module."></p>
 <p>Figure 2 shows the registers used for our controlseg module.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -293,7 +293,7 @@ ul.task-list li input[type="checkbox"] {
 <p><strong>Controller Simulation</strong></p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="../images/contseg.png" class="img-fluid figure-img"></p>
+<p><img src="../images/cont.png" class="img-fluid figure-img"></p>
 <figcaption>Figure 9: Above pictures the waveforms corresponding to the controller</figcaption>
 </figure>
 </div>
