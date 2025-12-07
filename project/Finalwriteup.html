@@ -198,17 +198,26 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#abstract" id="toc-abstract" class="nav-link active" data-scroll-target="#abstract">Abstract</a>
+  <li><a href="#about-us" id="toc-about-us" class="nav-link active" data-scroll-target="#about-us">About Us:</a></li>
+  <li><a href="#abstract" id="toc-abstract" class="nav-link" data-scroll-target="#abstract">Abstract</a>
   <ul class="collapse">
-  <li><a href="#team-members" id="toc-team-members" class="nav-link" data-scroll-target="#team-members">Team Members:</a></li>
-  <li><a href="#functional-specifications" id="toc-functional-specifications" class="nav-link" data-scroll-target="#functional-specifications">Functional Specifications</a></li>
+  <li><a href="#features" id="toc-features" class="nav-link" data-scroll-target="#features">Features</a></li>
+  <li><a href="#hardware" id="toc-hardware" class="nav-link" data-scroll-target="#hardware">Hardware</a></li>
+  <li><a href="#usage" id="toc-usage" class="nav-link" data-scroll-target="#usage">Usage</a></li>
+  </ul></li>
   <li><a href="#microcontroller-overview" id="toc-microcontroller-overview" class="nav-link" data-scroll-target="#microcontroller-overview">Microcontroller overview</a></li>
   <li><a href="#fpga-overview" id="toc-fpga-overview" class="nav-link" data-scroll-target="#fpga-overview">FPGA overview</a></li>
-  <li><a href="#analog-to-digital-converter-adc-responsibilities" id="toc-analog-to-digital-converter-adc-responsibilities" class="nav-link" data-scroll-target="#analog-to-digital-converter-adc-responsibilities"><strong>Analog to Digital Converter (ADC) Responsibilities</strong></a></li>
-  <li><a href="#digital-to-analog-converter-dac-responsibilities" id="toc-digital-to-analog-converter-dac-responsibilities" class="nav-link" data-scroll-target="#digital-to-analog-converter-dac-responsibilities"><strong>Digital to Analog Converter (DAC) Responsibilities</strong></a></li>
-  <li><a href="#testbenches" id="toc-testbenches" class="nav-link" data-scroll-target="#testbenches">Testbenches</a></li>
-  <li><a href="#technical-documentation" id="toc-technical-documentation" class="nav-link" data-scroll-target="#technical-documentation">Technical Documentation</a></li>
+  <li><a href="#hardware-components" id="toc-hardware-components" class="nav-link" data-scroll-target="#hardware-components">Hardware Components</a>
+  <ul class="collapse">
+  <li><a href="#new-hardware-overview" id="toc-new-hardware-overview" class="nav-link" data-scroll-target="#new-hardware-overview">New Hardware Overview</a></li>
   </ul></li>
+  <li><a href="#technical-documentation" id="toc-technical-documentation" class="nav-link" data-scroll-target="#technical-documentation">Technical Documentation</a></li>
+  <li><a href="#testing-and-methodology" id="toc-testing-and-methodology" class="nav-link" data-scroll-target="#testing-and-methodology">Testing and Methodology</a>
+  <ul class="collapse">
+  <li><a href="#testbenches" id="toc-testbenches" class="nav-link" data-scroll-target="#testbenches">Testbenches</a></li>
+  <li><a href="#decibal-meter" id="toc-decibal-meter" class="nav-link" data-scroll-target="#decibal-meter">Decibal Meter</a></li>
+  </ul></li>
+  <li><a href="#results" id="toc-results" class="nav-link" data-scroll-target="#results">Results</a></li>
   <li><a href="#acknowledgements" id="toc-acknowledgements" class="nav-link" data-scroll-target="#acknowledgements">Acknowledgements</a></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul>
@@ -248,15 +257,11 @@ window.Quarto = {
 </header>
 
 
-<section id="abstract" class="level2">
-<h2 class="anchored" data-anchor-id="abstract">Abstract</h2>
-<p>We met all of our specifications today, as we finally got our filtering to work correctly. This was an extremely difficult project that we both worked ~100 hours on each. We learned a lot about audio filtering, communication protocols, writting pipelined digital circuits, and perseverance.</p>
-<p>All of our code is available on our <a href="https://github.com/eoinoconnell04/E155-Project">github</a>.</p>
-<section id="team-members" class="level3">
-<h3 class="anchored" data-anchor-id="team-members">Team Members:</h3>
+<section id="about-us" class="level2">
+<h2 class="anchored" data-anchor-id="about-us">About Us:</h2>
 <p><strong>Drake Gonzales</strong>:</p>
 <blockquote class="blockquote">
-<p><strong><em>Bio:</em></strong> Hello! My name is Drake Gonzales and I am a Junior Engineering major at Harvey Mudd College. I am interested in studying computer and electrical engineering, with a specific interest in Lithography.</p>
+<p><strong><em>Bio:</em></strong> Hello! My name is Drake Gonzales and I am a Junior Engineering major at Harvey Mudd College. I am interested in studying computer and electrical engineering, with a specific focus in Lithography.</p>
 </blockquote>
 <p><a href="https://www.linkedin.com/in/drake-gonzales-a953092a6/">LinkedIn</a> <a href="https://swayngee.github.io/e155-lab1/">Portfolio</a></p>
 <p><strong>Eoin O’Connell</strong>:</p>
@@ -265,124 +270,200 @@ window.Quarto = {
 </blockquote>
 <p><a href="https://www.linkedin.com/in/eoinoconnell04/">LinkedIn</a> <a href="https://eoinoconnell04.github.io/E155-Portfolio/">Portfolio</a></p>
 </section>
-<section id="functional-specifications" class="level3">
-<h3 class="anchored" data-anchor-id="functional-specifications">Functional Specifications</h3>
-<ul class="task-list">
-<li><p><label><input type="checkbox"><strong>Input / Output</strong>:<br>
-Audio is input via a 1/8-inch aux cable and output through a speaker in the digital lab.</label></p>
-<p>Our project takes a standard 1/8-inch</p></li>
-<li><p><label><input type="checkbox"><strong>Bypass Behavior</strong>:<br>
-When all EQ knobs are in their default (neutral) positions, the output should closely match the original input audio.</label></p>
-<p>The coefficients snap to unity gain when close enough to the unfiltered position to ensure true bypass of original audio. Even when very close to unity gain but not, the audio is indistinguishable.</p></li>
-<li><p><label><input type="checkbox"><strong>Frequency Bands</strong>:<br>
-The equalizer will feature three independently adjustable bands:</label></p>
+<section id="abstract" class="level2">
+<h2 class="anchored" data-anchor-id="abstract">Abstract</h2>
+<p>This project implements a <strong>real-time 3-band equalizer</strong> that can independently adjust low, mid, and high frequencies of an audio signal. Audio is input via a <strong>1/8-inch auxiliary cable</strong>, digitized by an <strong>ADC</strong>, processed on an <strong>FPGA</strong>, and output through a <strong>DAC</strong> to stereo speakers.</p>
+<p>Three potentiometers allow live control of each frequency band, enabling hands-on EQ adjustment with <strong>minimal latency</strong>.</p>
+<section id="features" class="level3">
+<h3 class="anchored" data-anchor-id="features">Features</h3>
 <ul>
-<li><strong>Low band:</strong> ~100 Hz – 400 Hz<br>
-</li>
-<li><strong>Mid band:</strong> ~400 Hz – 2 kHz<br>
-</li>
-<li><strong>High band:</strong> ~2 kHz – 8 kHz</li>
+<li>Three adjustable bands:
+<ul>
+<li>Low: ~100–400 Hz</li>
+<li>Mid: ~400 Hz–2 kHz</li>
+<li>High: ~2–8 kHz</li>
 </ul></li>
-<li><p><label><input type="checkbox"><strong>Control Interface:</strong><br>
-Each band will have its own <strong>potentiometer</strong> for analog gain adjustment (boost/cut).</label></p>
-<p>We have three potentiometers, one for low, mid, and high.</p></li>
-<li><p><label><input type="checkbox"><strong>Latency:</strong><br>
-The system will maintain real-time operation with <strong>&lt; 50 ms latency</strong>, ensuring audio remains synchronized with video sources such as YouTube.</label></p>
-<p>We use an audio visual sync test to get a rough measurement of latency. Humans can detect latency that is off by around 30-50 ms, and we have no noticable latency. We have a pipelined design where our output is delayed by 3 audio samples, which are at 63 kHz, which calculates to a latency on the order of 50 <span class="math inline">\(\micro\)</span> seconds.</p></li>
-<li><p><label><input type="checkbox"><strong>Filtering Performance:</strong><br>
-Each EQ band must correctly attenuate its designated frequency range without introducing distortion or unintended interaction between bands.</label></p>
-<p>We test with playing a song while also inputing a tone of a certain frequency. We test the attuenation of that tone, and the effect on the rest of the song to measure the interaction. For example, if we are playing a 1000 kHz tone, and we attenuate mids, that tone should be reduced while high frequencies in the song are not.</p></li>
-<li><p><label><input type="checkbox"><strong>Theoretical Frequency Response Graphing:</strong><br>
-The final report will include theoretical frequency responses and graph bode plots as a function of potentiometer values.</label></p>
-<p>Frequency Response Simulation: <a href="https://eoinoconnell04.github.io/E155-Portfolio/E155-Project/bode_plot_demo.html">Interactive Demo</a></p></li>
+<li>Real-time digital filtering on an <strong>iCE40 UltraPlus FPGA</strong></li>
+<li><strong>MCU-controlled</strong> filter coefficients sent via SPI</li>
+<li>Stereo input/output using I²S protocol</li>
+<li>Bypass mode preserves original audio when knobs are neutral</li>
 </ul>
 </section>
-<section id="microcontroller-overview" class="level3">
-<h3 class="anchored" data-anchor-id="microcontroller-overview">Microcontroller overview</h3>
+<section id="hardware" class="level3">
+<h3 class="anchored" data-anchor-id="hardware">Hardware</h3>
+<ul>
+<li>iCE40 UltraPlus FPGA</li>
+<li>STM32L432KC MCU</li>
+<li>PCM1808 ADC</li>
+<li>PCM5102 DAC</li>
+<li>3 x potentiometers for EQ control</li>
+<li>Standard 1/8-inch audio input</li>
+</ul>
+</section>
+<section id="usage" class="level3">
+<h3 class="anchored" data-anchor-id="usage">Usage</h3>
+<ol type="1">
+<li>Connect an audio source to the ADC.</li>
+<li>Adjust low, mid, and high potentiometers to modify EQ in real time.</li>
+<li>Audio output is sent to speakers via the DAC.</li>
+</ol>
+<p>All of our code is available on our <a href="https://github.com/eoinoconnell04/E155-Project">github</a>.</p>
+<p>Here is a live <a href="https://eoinoconnell04.github.io/E155-Portfolio/E155-Project/bode_plot_demo.html">Interactive Demo</a> that you can try out to see our simulated frequency response.</p>
+</section>
+</section>
+<section id="microcontroller-overview" class="level2">
+<h2 class="anchored" data-anchor-id="microcontroller-overview">Microcontroller overview</h2>
 <p>The MCU within our project was designed to take in inputs from three potentiometers, and create filter coefficient calculations with moving average filtering for a three-band equalizer. A script was written to calibrate the knobs based on sampling frequency, and moving average functions. The MCU was then tasked to send these filter coefficients over SPI to the FPGA. SPI transactions were verified using a Logic Analyzer.</p>
 </section>
-<section id="fpga-overview" class="level3">
-<h3 class="anchored" data-anchor-id="fpga-overview">FPGA overview</h3>
-<p>The FPGA on the other hand was used as the main brain for this project. To be able to recieve audio from the external ADC, an I2S peripheral, made by Lattice, was used to control the RX and TX internal modules. The RX module was designed to input/ latch the audio in, while the TX was used to create the necessary bit clk, LR clk, and latch the output audio. Along side this, the FPGA took in SPI inputs from the MCU via written SPI verilog. The filtering was done using the internal peripheral MAC16 (Multiply-Accumulate) and was processed using a 16-bit biqud IRR filter fsm. ### System Partitioning</p>
-<section id="fpga-responsibilities" class="level4">
-<h4 class="anchored" data-anchor-id="fpga-responsibilities"><strong>FPGA Responsibilities</strong></h4>
-<ul>
-<li>Perform real-time <strong>IIR-based filtering</strong> for the three EQ bands.</li>
-<li>Handle <strong>I²S communication</strong> with both ADC and DAC devices.</li>
-<li>Generate appropriate <strong>clock signals</strong> using internal oscillators (HSOSC or LFOSC).</li>
-</ul>
+<section id="fpga-overview" class="level2">
+<h2 class="anchored" data-anchor-id="fpga-overview">FPGA overview</h2>
+<p>The FPGA on the other hand was used as the main brain for this project. To be able to recieve audio from the external ADC, an I2S peripheral, made by Lattice, was used to control the RX and TX internal modules. The RX module was designed to input/ latch the audio in, while the TX was used to create the necessary bit clk, LR clk, and latch the output audio. Along side this, the FPGA took in SPI inputs from the MCU via written SPI verilog. The filtering was done using the internal peripheral MAC16 (Multiply-Accumulate) and was processed using a 16-bit biqud IRR filter fsm.</p>
 </section>
-<section id="mcu-responsibilities" class="level4">
-<h4 class="anchored" data-anchor-id="mcu-responsibilities"><strong>MCU Responsibilities</strong></h4>
-<ul>
-<li>Read <strong>three analog potentiometer inputs</strong> (one per frequency band).</li>
-<li>Compute <strong>IIR filter coefficients</strong> based on knob positions.</li>
-<li>Transmit updated coefficients to the FPGA via <strong>SPI</strong>.</li>
-</ul>
+<section id="hardware-components" class="level2">
+<h2 class="anchored" data-anchor-id="hardware-components">Hardware Components</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Component</th>
+<th>Quantity</th>
+<th>Function</th>
+<th>Interface</th>
+<th>Approx. Cost</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><a href="https://www.digikey.com/en/products/detail/adafruit-industries-llc/6250/26249971"><strong>Adafruit PCM5102 I²S DAC</strong></a></td>
+<td>1</td>
+<td>Digital-to-Analog Converter</td>
+<td>I²S</td>
+<td>~$6</td>
+<td>16–32 bit, 8–384 kHz sampling, 3.3V logic, 2.1 V-rms output</td>
+</tr>
+<tr class="even">
+<td><a href="https://www.amazon.com/PCM1808-Single-Ended-Analog-Input-Decoder-Amplifier/dp/B0D9LNGBD1/ref=sr_1_2?crid=36BETC5DF3MKP&amp;dib=eyJ2IjoiMSJ9.nlR0qPjoFMWLXWvcVm5knddFFm91uZHicUMUQt7fQD2tq6s6qm5W_n4pyBM6xX-trNWgHX6ewn1atXHg6hRTejlrJI4auPOkpfjZueUFzJ0HZSB1_9DcHHzd51PVCwachjMeg7oem3HzbDuk_DUKRi_Ou52n5owbxklLTIAMG7AehH1ymr8ug4BEVaRgoWhk7Gr5YJGwMOrE1Mv-jY4hdG5l_VchhpsW65TVBDcg-eXAThgxDyTGwFhXx4VQ6AGPKSC5HkG-lvhaMzcYhnWzVMCcgTSM6joVPOTBo1RBNyI.Pa8c9lwcgTzKRZBqkcgd8nNLlCZvq8dwTe9jsdVm5MM&amp;dib_tag=se&amp;keywords=PCM1802&amp;qid=1760390332&amp;s=industrial&amp;sprefix=%2Cindustrial%2C356&amp;sr=1-2"><strong>PCM1808 ADC</strong></a></td>
+<td>1</td>
+<td>Analog-to-Digital Converter</td>
+<td>I²S</td>
+<td>~$6</td>
+<td>24-bit, 8–96 kHz sampling, 3.3–5V supply</td>
+</tr>
+<tr class="odd">
+<td><a href="https://www.digikey.com/en/products/detail/kycon-inc/STX-3000/9975995"><strong>STX-3000 Audio Jack</strong></a></td>
+<td>1</td>
+<td>Stereo audio input connector</td>
+<td>Analog</td>
+<td>~$1</td>
+<td>3.5 mm TRS jack, through-hole and breadboard compatible</td>
+</tr>
+<tr class="even">
+<td><strong>3362 1/4-inch Square Trimpot Potentiometers</strong></td>
+<td>3</td>
+<td>User control for low, mid, and high bands</td>
+<td>Analog</td>
+<td>Stockroom</td>
+<td>Reads by MCU ADC pins</td>
+</tr>
+<tr class="odd">
+<td><strong>ICE40 UltraPlus FPGA Board</strong></td>
+<td>1</td>
+<td>Real-time DSP core</td>
+<td>I²C, SPI</td>
+<td>On Hand</td>
+<td>Performs all filtering</td>
+</tr>
+<tr class="even">
+<td><strong>STM32L432KC MCU Board</strong></td>
+<td>1</td>
+<td>User interface and coefficient computation</td>
+<td>SPI, ADC</td>
+<td>On Hand</td>
+<td>Communicates with FPGA</td>
+</tr>
+<tr class="odd">
+<td><strong>Miscellaneous Components</strong></td>
+<td>n/a</td>
+<td>Op-amps, resistors, capacitors, wires</td>
+<td>Analog</td>
+<td>Stockroom</td>
+<td>Used for signal conditioning, biasing, and connections</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Subtotal parts cost:</strong> ~<strong>$13</strong> (excluding lab stock components).</p>
+<p><strong>Shipping and Taxes:</strong> ~<strong>$8</strong></p>
+<p><strong>Total external parts cost:</strong> ~<strong>$21</strong>.</p>
+<section id="new-hardware-overview" class="level3">
+<h3 class="anchored" data-anchor-id="new-hardware-overview">New Hardware Overview</h3>
+<p>By the time we started this project, we were very familiar with our board with the iCE40 FGPA and STM32 MCU. One key aspect of this project was choosing some new hardware to learn about, and we choose to implement an external ADC and DAC that communciated over I2S. We had already implemented other communication protocols for previous labs in E155, including SPI and UART, so it was easy to understand the timing diagrams and pick up I2S.</p>
+<p>The ADC and DAC communicate with the FPGA, and our FPGA manuafacturer, Lattice Semiconductor, provides a <a href="https://www.latticesemi.com/products/designsoftwareandip/intellectualproperty/ipcore/ipcores04/i2s">library</a> with a controller for I2S specifically for our FPGA. Even with the working controllers, it took a few long days to succesfully pass through unfiltered audio through ADC, FPGA, and DAC to hear our first audio.</p>
+<p>Additionally, we used the built in ADC periferal for the first time on our microcontroller. This required written a new driver to enable and interface with the periferal, and this was used to measure the analog values from our potentiometer. The reason why we did not use this for our audio, was that audio latency was one of our key priorities, and this would have introduced extra latency and also resulted in lower quality audio.</p>
+<hr>
 </section>
 </section>
-<section id="analog-to-digital-converter-adc-responsibilities" class="level3">
-<h3 class="anchored" data-anchor-id="analog-to-digital-converter-adc-responsibilities"><strong>Analog to Digital Converter (ADC) Responsibilities</strong></h3>
-<ul>
-<li>Convert analog data to digital data</li>
-<li>Communicate over I2S protocol</li>
-</ul>
-</section>
-<section id="digital-to-analog-converter-dac-responsibilities" class="level3">
-<h3 class="anchored" data-anchor-id="digital-to-analog-converter-dac-responsibilities"><strong>Digital to Analog Converter (DAC) Responsibilities</strong></h3>
-<ul>
-<li>Convert digital data to analog data</li>
-<li>Communicate over I2S protocol ### Results</li>
-</ul>
-<p>The results in this lab were completed as laid out within the project proposal. The FPGA was designed to perform real time IRR filtering, handle i2S communication, and recieve SPI. the MCU on the other hand was to compute the IRR coefficients based on potentiometer readings, and setup SPI. The goal of our project was also to setup an external ADC and DAC, which was completed duing the midpoint project checkoff. Our final deliverables were successfully completed as 3 potentiometers can be used to control the mid, low, and high frequency pitch of incoming audio. Audio is inputed into our system using external jacks and was scaled using op-amps. A couple risks that we were addressing throughout the project were latency, clock synchronization, 16-bit data paths, and exceeeding the internal LUT’s of the FPGA. With the completion of the project each risk was addressed and completed either visually and/or using a logic analyzer.</p>
-<p>This project took ~200 hours to complete.</p>
-</section>
-<section id="testbenches" class="level3">
-<h3 class="anchored" data-anchor-id="testbenches">Testbenches</h3>
-<p>We thoroughly test benched our RTL throughout the design process to get a working output. We could never have gotten our pipelined filter and multiply accumulate to work otherwise.</p>
-<p>Of course we started by testbenching the most basic modules and working our way up. We were dealing with zero output for the vast majority of the project.</p>
-<p>Eventually we worked our way up to the top level test bench, which we see here:</p>
-<p><img src="images/top_waveforms.png" class="img-fluid"></p>
+<section id="technical-documentation" class="level1">
+<h1>Technical Documentation</h1>
+<p><img src="../images/block_diagram.png" class="img-fluid"></p>
 <figcaption>
-Figure 1: Top level testbench waveforms.
-</figcaption>
-<p>Here we modeled both I2S inputs and outputs from the ADC and DAC, and SPI inputs from the MCU. We were able to confirm that the audio coming in from I2S was being correctly filtered given the current coefficients coming in from the MCU.</p>
-</section>
-<section id="technical-documentation" class="level3">
-<h3 class="anchored" data-anchor-id="technical-documentation">Technical Documentation</h3>
-<p><img src="images/block_diagram.png" class="img-fluid"></p>
-<figcaption>
-Figure 2: System Level Block Diagram.
+Figure 1: System Level Block Diagram.
 </figcaption>
 <p>Here we see to system level diagram of our project. It highlights the different components and the protocols that connect them.</p>
-<p><img src="images/rtl_block_diagram.png" class="img-fluid"></p>
+<p><img src="../images/rtl_block_diagram.png" class="img-fluid"></p>
 <figcaption>
-Figure 3: Top Level RTL Block Diagram.
+Figure 2: Top Level RTL Block Diagram.
 </figcaption>
 <p>This is the top level RTL block diagram of our design. For clarity, we didn’t expand the filter module or the spi module, but the internals of these modules are shown below. Additionally, we represented all coefficients as an array of 15 different 16 bit signals. In practice, our RTL has 15 different ports, on for each coefficient.</p>
-<p><img src="images/filter_block_diagram.png" class="img-fluid"></p>
+<p><img src="../images/filter_block_diagram.png" class="img-fluid"></p>
 <figcaption>
-Figure 4: Filter RTL Block Diagram.
+Figure 3: Filter RTL Block Diagram.
 </figcaption>
 <p>Here we see to system level diagram of our project. It highlights the different components and the protocols that connect them.</p>
-<p><img src="images/schematic.png" class="img-fluid"></p>
+<p><img src="../images/schematic.png" class="img-fluid"></p>
 <figcaption>
-Figure 5: RTL Block Diagram.
+Figure 4: RTL Block Diagram.
 </figcaption>
 <p>Here we see to system level diagram of our project. It highlights the different components and the protocols that connect them.</p>
-<p><img src="images/FSM_diagram.png" class="img-fluid"></p>
+<p><img src="../images/FSM_diagram.png" class="img-fluid"></p>
 <figcaption>
-Figure 6: Filtering FSM Diagram.
+Figure 5: Filtering FSM Diagram.
 </figcaption>
 <p>This is the diagram for the finite state machine that time multiplexes the DSP slice to do the multiply accumulate operations for the IIR filter. Our design contains 3 instantiations of this FSM, as we have 3 cascading filters.</p>
 </section>
+<section id="testing-and-methodology" class="level1">
+<h1>Testing and Methodology</h1>
+<section id="testbenches" class="level2">
+<h2 class="anchored" data-anchor-id="testbenches">Testbenches</h2>
+<p>We thoroughly test benched our RTL throughout the design process to get a working output. We could never have gotten our pipelined filter and multiply accumulate to work otherwise.</p>
+<p>Of course we started by testbenching the most basic modules and working our way up. We were dealing with zero output for the vast majority of the project.</p>
+<p>Eventually we worked our way up to the top level test bench, which we see here:</p>
+<p><img src="../images/top_waveforms.png" class="img-fluid"></p>
+<figcaption>
+Figure 6: Top level testbench waveforms.
+</figcaption>
+<p>Here we modeled both I2S inputs and outputs from the ADC and DAC, and SPI inputs from the MCU. We were able to confirm that the audio coming in from I2S was being correctly filtered given the current coefficients coming in from the MCU.</p>
 </section>
-<section id="acknowledgements" class="level2">
-<h2 class="anchored" data-anchor-id="acknowledgements">Acknowledgements</h2>
-<p>We would like to thank Prof.&nbsp;Matthew Spencer for teaching us so much this semester. Additionally, a sepcial thanks to Xavier Walter for helping us debug countless problems this year and giving us the tools we needed to be successful. Finally, thanks to the rest of the HMC lab and stockroom staff..</p>
+<section id="decibal-meter" class="level2">
+<h2 class="anchored" data-anchor-id="decibal-meter">Decibal Meter</h2>
+<p>We used a decibal meter app on our phone to analyze the frequency response of our filters. We would play a tone on a computer connected to our filter input, and measure the decibals with each band open and at full attenuation. We found a max of around 1 dB drop when attenuating a band that did not include the target frequency (ie. a high pitch sound and cutting out mid frequencies), and over 10 dB when attenuating the target frequencies. This is a very significant reduction which we are very happy with. We could make the attenuation even steeper by adjusting the coefficients, or change our knobs to allow for boosts as well as cuts.</p>
 </section>
-<section id="references" class="level2">
-<h2 class="anchored" data-anchor-id="references">References</h2>
+</section>
+<section id="results" class="level1">
+<h1>Results</h1>
+<p>The results in this lab were completed as laid out within the project proposal. The FPGA was designed to perform real time IRR filtering, handle i2S communication, and recieve SPI. the MCU on the other hand was to compute the IRR coefficients based on potentiometer readings, and setup SPI. The goal of our project was also to setup an external ADC and DAC, which was completed duing the midpoint project checkoff. Our final deliverables were successfully completed as 3 potentiometers can be used to control the mid, low, and high frequency pitch of incoming audio. Audio is inputed into our system using external jacks and was scaled using op-amps. A couple risks that we were addressing throughout the project were latency, clock synchronization, 16-bit data paths, and exceeeding the internal LUT’s of the FPGA. With the completion of the project each risk was addressed and completed either visually and/or using a logic analyzer.</p>
+<p>Each band independently attenuates without interfering with the other bands, as we measured with the decibal meter and subjective listening tests. Each band has <strong>&gt;10 dB</strong> reduction measured with a microphone, and this is very noticable when listening. We are very happy with the filtering performance.</p>
+<p>We were also very satisfied with the latency we were able to achieve. Our main goal was to have imperceptible audio latency, and we achieved this by orders of magnitude.</p>
+<p>We use an audio visual sync test to get a rough measurement of latency. Humans can detect latency that is off by around 30-50 ms, and we have no noticable latency. We have a pipelined design where our output is delayed by 3 audio samples, which are at 63 kHz, which calculates to a latency on the order of 50 <span class="math inline">\(\micro\)</span> seconds.</p>
+<p>This project took ~200 hours to complete between the two of us.</p>
+<p><img src="../images/box.jpeg" class="img-fluid"> <img src="../images/knobs.jpeg" class="img-fluid"> <img src="../images/internals.jpeg" class="img-fluid"></p>
+<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/PDhLHjlSDeo" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
+</section>
+<section id="acknowledgements" class="level1">
+<h1>Acknowledgements</h1>
+<p>We would like to thank Prof.&nbsp;Matthew Spencer for teaching us so much this semester. Additionally, a sepcial thanks to Xavier Walter for helping us debug countless problems this year and giving us the tools we needed to be successful. Finally, thanks to the rest of the HMC lab and stockroom staff.</p>
+</section>
+<section id="references" class="level1">
+<h1>References</h1>
 <p><a href="https://www.latticesemi.com/products/designsoftwareandip/intellectualproperty/ipcore/ipcores04/i2s">Lattice iCE40 UltraPlus I2S IP General purpose I2S controller</a>.</p>
 
 
