@@ -204,7 +204,8 @@ window.Quarto = {
   <li><a href="#functional-specifications" id="toc-functional-specifications" class="nav-link" data-scroll-target="#functional-specifications">Functional Specifications</a></li>
   <li><a href="#microcontroller-overview" id="toc-microcontroller-overview" class="nav-link" data-scroll-target="#microcontroller-overview">Microcontroller overview</a></li>
   <li><a href="#fpga-overview" id="toc-fpga-overview" class="nav-link" data-scroll-target="#fpga-overview">FPGA overview</a></li>
-  <li><a href="#results" id="toc-results" class="nav-link" data-scroll-target="#results">Results</a></li>
+  <li><a href="#analog-to-digital-converter-adc-responsibilities" id="toc-analog-to-digital-converter-adc-responsibilities" class="nav-link" data-scroll-target="#analog-to-digital-converter-adc-responsibilities"><strong>Analog to Digital Converter (ADC) Responsibilities</strong></a></li>
+  <li><a href="#digital-to-analog-converter-dac-responsibilities" id="toc-digital-to-analog-converter-dac-responsibilities" class="nav-link" data-scroll-target="#digital-to-analog-converter-dac-responsibilities"><strong>Digital to Analog Converter (DAC) Responsibilities</strong></a></li>
   <li><a href="#testbenches" id="toc-testbenches" class="nav-link" data-scroll-target="#testbenches">Testbenches</a></li>
   <li><a href="#technical-documentation" id="toc-technical-documentation" class="nav-link" data-scroll-target="#technical-documentation">Technical Documentation</a></li>
   </ul></li>
@@ -302,11 +303,39 @@ The final report will include theoretical frequency responses and graph bode plo
 </section>
 <section id="fpga-overview" class="level3">
 <h3 class="anchored" data-anchor-id="fpga-overview">FPGA overview</h3>
-<p>The FPGA on the other hand was used as the main brain for this project. To be able to recieve audio from the external ADC, an I2S peripheral, made by Lattice, was used to control the RX and TX internal modules. The RX module was designed to input/ latch the audio in, while the TX was used to create the necessary bit clk, LR clk, and latch the output audio. Along side this, the FPGA took in SPI inputs from the MCU via written SPI verilog. The filtering was done using the internal peripheral MAC16 (Multiply-Accumulate) and was processed using a 16-bit biqud IRR filter fsm.</p>
+<p>The FPGA on the other hand was used as the main brain for this project. To be able to recieve audio from the external ADC, an I2S peripheral, made by Lattice, was used to control the RX and TX internal modules. The RX module was designed to input/ latch the audio in, while the TX was used to create the necessary bit clk, LR clk, and latch the output audio. Along side this, the FPGA took in SPI inputs from the MCU via written SPI verilog. The filtering was done using the internal peripheral MAC16 (Multiply-Accumulate) and was processed using a 16-bit biqud IRR filter fsm. ### System Partitioning</p>
+<section id="fpga-responsibilities" class="level4">
+<h4 class="anchored" data-anchor-id="fpga-responsibilities"><strong>FPGA Responsibilities</strong></h4>
+<ul>
+<li>Perform real-time <strong>IIR-based filtering</strong> for the three EQ bands.</li>
+<li>Handle <strong>I²S communication</strong> with both ADC and DAC devices.</li>
+<li>Generate appropriate <strong>clock signals</strong> using internal oscillators (HSOSC or LFOSC).</li>
+</ul>
 </section>
-<section id="results" class="level3">
-<h3 class="anchored" data-anchor-id="results">Results</h3>
-<p>The results in this lab were completed as laid out within the project proposal. The FPGA was</p>
+<section id="mcu-responsibilities" class="level4">
+<h4 class="anchored" data-anchor-id="mcu-responsibilities"><strong>MCU Responsibilities</strong></h4>
+<ul>
+<li>Read <strong>three analog potentiometer inputs</strong> (one per frequency band).</li>
+<li>Compute <strong>IIR filter coefficients</strong> based on knob positions.</li>
+<li>Transmit updated coefficients to the FPGA via <strong>SPI</strong>.</li>
+</ul>
+</section>
+</section>
+<section id="analog-to-digital-converter-adc-responsibilities" class="level3">
+<h3 class="anchored" data-anchor-id="analog-to-digital-converter-adc-responsibilities"><strong>Analog to Digital Converter (ADC) Responsibilities</strong></h3>
+<ul>
+<li>Convert analog data to digital data</li>
+<li>Communicate over I2S protocol</li>
+</ul>
+</section>
+<section id="digital-to-analog-converter-dac-responsibilities" class="level3">
+<h3 class="anchored" data-anchor-id="digital-to-analog-converter-dac-responsibilities"><strong>Digital to Analog Converter (DAC) Responsibilities</strong></h3>
+<ul>
+<li>Convert digital data to analog data</li>
+<li>Communicate over I2S protocol ### Results</li>
+</ul>
+<p>The results in this lab were completed as laid out within the project proposal. The FPGA was designed to perform real time IRR filtering, handle i2S communication, and recieve SPI. the MCU on the other hand was to compute the IRR coefficients based on potentiometer readings, and setup SPI. The goal of our project was also to setup an external ADC and DAC, which was completed duing the midpoint project checkoff. Our final deliverables were successfully completed as 3 potentiometers can be used to control the mid, low, and high frequency pitch of incoming audio. Audio is inputed into our system using external jacks and was scaled using op-amps. A couple risks that we were addressing throughout the project were latency, clock synchronization, 16-bit data paths, and exceeeding the internal LUT’s of the FPGA. With the completion of the project each risk was addressed and completed either visually and/or using a logic analyzer.</p>
+<p>This project took ~200 hours to complete.</p>
 </section>
 <section id="testbenches" class="level3">
 <h3 class="anchored" data-anchor-id="testbenches">Testbenches</h3>
