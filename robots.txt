@@ -1,1 +1,1 @@
-Sitemap: https://Swayngee.github.io/e155-lab1/sitemap.xml
+Sitemap: https://Swayngee.github.io/E155-Digital-design-Projects-/sitemap.xml
